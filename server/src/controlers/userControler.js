@@ -18,7 +18,7 @@ const url =
 //   } catch (error) {
 //     console.log(error);
 //     close();
-//     res.send({ message: error._message });
+//     res.json({ message: error._message });
 //   }
 // };
 const getUsers = async (req, res) => {
@@ -44,7 +44,7 @@ const getUsers = async (req, res) => {
   } catch (error) {
     console.log(error);
     close();
-    res.send({ message: error._message });
+    res.json({ message: error._message });
   }
 };
 
@@ -60,6 +60,20 @@ const getUsers = async (req, res) => {
 //     );
 //   });
 
+// const getUsers = async (req, res) => {
+//   try {
+//     connect();
+//     const getAllUsers = await User.find({
+//     });
+//     console.log(getAllUsers);
+//     close();
+//     res.json(getAllUsers);
+// } catch ({message}) {
+//   close();
+//   res.json({message});
+// }
+// };
+
 const createUser = async ({ body: { firstName, lastName } }, res) => {
   try {
     connect();
@@ -70,9 +84,11 @@ const createUser = async ({ body: { firstName, lastName } }, res) => {
     });
     close();
     res.json(crearedUser);
-  } catch (error) {
+  } catch ({_message}) {
     close();
-    res.send({ message: error._message });
+    res
+    .status(400)
+    .json({ message: _message });
   }
 };
 
@@ -81,13 +97,15 @@ const getUserById = async ({ params: { id } }, res) => {
   try {
     connect();
     const findUserById = await User.findOne({ id });
+    if (!findUserById) throw Error('User not found')
     console.log(findUserById, "findUserById");
     close();
     res.json(findUserById);
-  } catch (error) {
-    console.log(error, "LOGING THE ERORO");
+  } catch ({message}) {
     close();
-    res.json({ error });
+    res
+    .status(404)
+    .json({message});
   }
 };
 
@@ -99,6 +117,7 @@ const updateUserById = async (
     console.log(firstName, lastName, " LOGING THE BODY");
     connect();
     const userToupdate = await User.findOne({ id });
+    if (!userToupdate) throw Error('User not found')
     console.log(userToupdate, "USER FOUND BY ID");
     firstName ? (userToupdate.firstName = firstName) : "";
     lastName ? (userToupdate.lastName = lastName) : "";
@@ -106,9 +125,11 @@ const updateUserById = async (
     await userToupdate.save();
     close();
     res.json(userToupdate);
-  } catch (error) {
+  } catch ({message}) {
     close();
-    res.send({ message: error._message });
+    res
+    .status(404)
+    .json({message});
   }
 };
 
@@ -116,12 +137,15 @@ const deleteUserById = async ({ params: { id } }, res) => {
   try {
     console.log(id , " TO DELETE");
     connect();
-    const deletedUser = await User.deleteOne({ id });
+    const {deletedCount} = await User.deleteOne({ id });
+    if (!deletedCount) throw Error('User not found')
     close();
-    res.json(deletedUser);
-  } catch (error) {
+    res.json({ message: 'User has been removed' });
+  } catch ({message}) {
     close();
-    res.send({ message: error._message });
+    res
+    .status(404)
+    .json({message});
   }
 };
 
