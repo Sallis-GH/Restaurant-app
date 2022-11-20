@@ -1,20 +1,34 @@
-const { MongoClient } = require('mongodb');
-​
+import mongoose from 'mongoose';
+
 const url = 'mongodb+srv://admsFamilySalt:4xxl9yYXvhnEAI45@restaurant-app-db.d4eqtgh.mongodb.net/test';
-const dbName = 'Restaurant-app-DB';
-​
+// const dbName = 'Restaurant-app-DB';
+
 const connect = async () => {
-  const client = await MongoClient.connect(url, {
+   mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const db = client.db(dbName);
-  const collection = db.collection('');
-  db.on('close', () => {
-    console.log('connection closed');
-  });
-  db.on('reconnect', () => {
-    console.log('reconnected');
-  });
-  return { collection, client };
+  console.log('Open connection');
+  return
 };
+
+const close = async () => {
+  mongoose.connection.close(
+    () => console.log("info:", "closing conneciton")); 
+  return
+}
+
+export {connect, close}
+
+// const dataHandeler = async (cb) => {
+//   const con = await mongoose.connect(url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   }, () => console.log("Open connection"));
+//   console.log(con);
+//   mongoose.Promise = global.Promise;
+//   const result = cb();
+//   await mongoose.connection.close(
+//     () => console.log("info:", "closing conneciton"));
+//     return
+// };
