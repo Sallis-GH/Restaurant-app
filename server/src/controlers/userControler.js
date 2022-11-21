@@ -1,87 +1,26 @@
 import { connect, close } from "../../db/db.js";
 import { User } from "../../db/models.js";
 import { v4 as uuid } from "uuid";
-import mongoose from "mongoose";
-const url =
-  "mongodb+srv://admsFamilySalt:4xxl9yYXvhnEAI45@restaurant-app-db.d4eqtgh.mongodb.net/test";
 
-// const getUsers = async (req, res) => {
-//   try {
-//     mongoose.connect(url, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//       });
-//     const users = await User.find();
-//     mongoose.connection.close(
-//         () => console.log("info:", "closing conneciton"));
-//     res.json(users);
-//   } catch (error) {
-//     console.log(error);
-//     close();
-//     res.json({ message: error._message });
-//   }
-// };
-const getUsers = async (req, res) => {
+const getUsers = async (_, res) => {
   try {
-    mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    User.find()
-      .then((users) => {
-        console.log(users);
-        mongoose.connection.close(() =>
-          console.log("info:", "closing conneciton")
-        );
-        res.json(users);
-      })
-      .catch((err) => {
-        console.log(err);
-        mongoose.connection.close(() =>
-          console.log("error:", "closing conneciton")
-        );
-      });
-  } catch (error) {
-    console.log(error);
+    const allUsers = await connect(() => User.find({}));
+    console.log(allUsers);
     close();
-    res.json({ message: error._message });
-  }
+    res.json(allUsers);
+} catch ({message}) {
+  close();
+  res.json({message});
+}
 };
-
-// Recipe.find({ title: "Lasagna" })
-//   .then((doc) => {
-//     console.log(doc);
-//     mongoose.connection.close(() => console.log("info:", "closing conneciton"));
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     mongoose.connection.close(() =>
-//       console.log("error:", "closing conneciton")
-//     );
-//   });
-
-// const getUsers = async (req, res) => {
-//   try {
-//     connect();
-//     const getAllUsers = await User.find({
-//     });
-//     console.log(getAllUsers);
-//     close();
-//     res.json(getAllUsers);
-// } catch ({message}) {
-//   close();
-//   res.json({message});
-// }
-// };
 
 const createUser = async ({ body: { firstName, lastName } }, res) => {
   try {
-    connect();
-    const crearedUser = await User.create({
+    const crearedUser = await connect(() => User.create({
       id: uuid(),
       firstName,
       lastName,
-    });
+    }));
     close();
     res.json(crearedUser);
   } catch ({_message}) {
@@ -95,12 +34,14 @@ const createUser = async ({ body: { firstName, lastName } }, res) => {
 const getUserById = async ({ params: { id } }, res) => {
   console.log(id, "LOGING ID");
   try {
-    connect();
-    const findUserById = await User.findOne({ id });
-    if (!findUserById) throw Error('User not found')
-    console.log(findUserById, "findUserById");
+    const userById = await connect(async () => {
+      const findUserById = await User.findOne({ id });
+      if (!findUserById) throw Error('User not found')
+      console.log(findUserById, "findUserById");
+      return findUserById;
+    });
     close();
-    res.json(findUserById);
+    res.json(userById);
   } catch ({message}) {
     close();
     res
@@ -115,16 +56,18 @@ const updateUserById = async (
 ) => {
   try {
     console.log(firstName, lastName, " LOGING THE BODY");
-    connect();
-    const userToupdate = await User.findOne({ id });
-    if (!userToupdate) throw Error('User not found')
-    console.log(userToupdate, "USER FOUND BY ID");
-    firstName ? (userToupdate.firstName = firstName) : "";
-    lastName ? (userToupdate.lastName = lastName) : "";
-    console.log(userToupdate, "AFTRE MANIPULATING");
-    await userToupdate.save();
+    const updatedUser = await connect(async () => {
+      const userToupdate = await User.findOne({ id });
+      if (!userToupdate) throw Error('User not found')
+      console.log(userToupdate, "USER FOUND BY ID");
+      firstName ? (userToupdate.firstName = firstName) : "";
+      lastName ? (userToupdate.lastName = lastName) : "";
+      console.log(userToupdate, "AFTRE MANIPULATING");
+      await userToupdate.save();
+      return userToupdate;
+    });
     close();
-    res.json(userToupdate);
+    res.json(updatedUser);
   } catch ({message}) {
     close();
     res
@@ -136,9 +79,10 @@ const updateUserById = async (
 const deleteUserById = async ({ params: { id } }, res) => {
   try {
     console.log(id , " TO DELETE");
-    connect();
-    const {deletedCount} = await User.deleteOne({ id });
-    if (!deletedCount) throw Error('User not found')
+    const resault = await connect(async () => {
+      const {deletedCount} = await User.deleteOne({ id });
+      if (!deletedCount) throw Error('User not found')
+    });
     close();
     res.json({ message: 'User has been removed' });
   } catch ({message}) {

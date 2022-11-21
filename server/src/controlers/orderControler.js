@@ -5,12 +5,10 @@ import { v4 as uuid } from "uuid";
 
 const getOrders = async (_, res) => {
   try {
-    connect();
-    const getAllOrders = await Order.find({
-    });
-    console.log(getAllOrders);
+    const allOrders = await connect(() => Order.find({}));
+    console.log(allOrders, 'result');
     close();
-    res.json(getAllOrders);
+    res.json(allOrders);
   } catch ({message}) {
     close();
     res.json({message});
@@ -19,12 +17,11 @@ const getOrders = async (_, res) => {
 
 const createOrder = async ({ body: { address, orders } }, res) => {
   try {
-    connect();
-    const crearedOrder = await Order.create({
+  const crearedOrder = await connect(() => Order.create({
       id: uuid(),
       address,
       orders,
-    });
+    }));
     close();
     res.json(crearedOrder);
   } catch ({_message}) {
@@ -38,12 +35,14 @@ const createOrder = async ({ body: { address, orders } }, res) => {
 const getOrderById = async ({ params: { id } }, res) => {
   console.log(id, "LOGING ID");
   try {
-    connect();
-    const findOrderById = await Order.findOne({ id });
-    if (!findOrderById) throw Error('Order not found')
-    console.log(findOrderById, "findOrderById");
+    const orderById = await connect(async () => {
+      const findOrderById = await Order.findOne({ id });
+      if (!findOrderById) throw Error('Order not found');
+      console.log(findOrderById, "FIND OBJECT BY ID");
+      return findOrderById
+    });
     close();
-    res.json(findOrderById);
+    res.json(orderById);
   } catch ({message}) {
     close();
     res
@@ -58,16 +57,18 @@ const updateOrderById = async (
 ) => {
   try {
     console.log(address, orders, " LOGING THE BODY");
-    connect();
-    const orderToUpdate = await Order.findOne({ id });
-    if (!orderToUpdate) throw Error('Order not found')
-    console.log(orderToUpdate, "FOUND BY ID");
-    address ? orderToUpdate.address = address : "";
-    orders ? orderToUpdate.orders = orders : "";
-    console.log(orderToUpdate, "AFTRE MANIPULATING");
-    await orderToUpdate.save();
+    const updatedOrder = await connect(async () => {
+      const orderToUpdate = await Order.findOne({ id });
+      if (!orderToUpdate) throw Error('Order not found')
+      console.log(orderToUpdate, "FOUND BY ID");
+      address ? orderToUpdate.address = address : "";
+      orders ? orderToUpdate.orders = orders : "";
+      console.log(orderToUpdate, "AFTRE MANIPULATING");
+      await orderToUpdate.save();
+      return orderToUpdate;
+    });
     close();
-    res.json(orderToUpdate);
+    res.json(updatedOrder);
   } catch ({message}) {
     close();
     res
@@ -79,9 +80,10 @@ const updateOrderById = async (
 const deleteOrderById = async ({ params: { id } }, res) => {
   try {
     console.log(id , " TO DELETE");
-    connect();
-    const {deletedCount} = await Order.deleteOne({ id });
-    if (!deletedCount) throw Error('Order not found')
+    const resault = await connect(async () => {
+      const {deletedCount} = await Order.deleteOne({ id });
+      if (!deletedCount) throw Error('Order not found')
+    });
     close();
     res.json({ message: 'Order has been removed' });
   } catch ({message}) {
@@ -91,6 +93,5 @@ const deleteOrderById = async ({ params: { id } }, res) => {
     .json({message});
   }
 };
-
 
 export default { getOrders, createOrder, getOrderById, updateOrderById, deleteOrderById };

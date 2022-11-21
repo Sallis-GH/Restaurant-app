@@ -3,13 +3,14 @@ import mongoose from 'mongoose';
 const url = 'mongodb+srv://admsFamilySalt:4xxl9yYXvhnEAI45@restaurant-app-db.d4eqtgh.mongodb.net/test';
 // const dbName = 'Restaurant-app-DB';
 
-const connect = async () => {
-   mongoose.connect(url, {
+const connect = async (cb) => {
+  await mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  });
+  },);
+  const resault = cb()
   console.log('Open connection');
-  return
+  return resault
 };
 
 const close = async () => {
@@ -19,16 +20,3 @@ const close = async () => {
 }
 
 export {connect, close}
-
-// const dataHandeler = async (cb) => {
-//   const con = await mongoose.connect(url, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }, () => console.log("Open connection"));
-//   console.log(con);
-//   mongoose.Promise = global.Promise;
-//   const result = cb();
-//   await mongoose.connection.close(
-//     () => console.log("info:", "closing conneciton"));
-//     return
-// };
