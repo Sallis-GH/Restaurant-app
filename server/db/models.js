@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema({
 	firstName: { type: String, required: true, },
@@ -17,7 +17,19 @@ const OrderSchema = new Schema({
 });
 const Order = model("Orders", OrderSchema);
 
+const menuSchema = new Schema({
+	"id": String,
+	"name": String,
+	"description": String,
+	"price": Number,
+	"currency": String,
+	"img":
+	{
+		data: Buffer,
+		contentType: String
+	},
+});
 
-  
-  
-  export { User, Order };
+const Menu = model("Menu", menuSchema);
+
+export { User, Order, Menu };
