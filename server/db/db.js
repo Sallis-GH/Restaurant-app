@@ -15,8 +15,8 @@ const connect = async (cb) => {
 
 const close = async () => {
   mongoose.connection.close(
-    () => console.log("info:", "closing conneciton")); 
+    () => console.log("info:", "closing conneciton"));
   return
 }
 
-export {connect, close}
+export { connect, close }
