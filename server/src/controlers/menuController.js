@@ -1,15 +1,12 @@
 import { connect, close } from "../../db/db.js";
-import { Order } from "../../db/models.js";
-import { v4 as uuid } from "uuid";
-
 import contentful from 'contentful-management';
 
-// const client = contentful.createClient({
-//   accessToken: 'Nfr_n3KnQA3DkuqgB35B3OZOYBy0RYSo2X6otEvv0Nw'
-// })
+const client = contentful.createClient({
+  accessToken: '9Cw4DorLUKr3hOczvF-1Qk_YTYbN21MKvf3eOf25pxI'
+})
 
 const getMenu = async (_, res) => {
-  console.log('puttana eva');
+  console.log('THIS IS A GET');
   try {
     const menu = await connect(() => Menu.find({}));
     close();
@@ -25,13 +22,12 @@ const getMenu = async (_, res) => {
 const createDish = async (req, res) => {
   // console.log(req.files, 'yah');
   // console.log(req.files.file.data, 'yah');
-  console.log('IAM HERE');
 
 
 
 
 
-  // Create asset
+
   client.getSpace('0658u1xd0vki')
     .then((space) => space.getEnvironment('master'))
     .then((environment) => environment.createAsset({
@@ -46,8 +42,8 @@ const createDish = async (req, res) => {
           'en-US': {
             contentType: 'image/png',
             fileName: req.files.file.name,
-            // upload: req.files.file.data
             upload: 'https://i.pinimg.com/originals/0a/1f/82/0a1f820e29719c7b67e9d5aa44241155.png'
+            // upload: req.file
           }
         }
       }
@@ -60,12 +56,10 @@ const createDish = async (req, res) => {
 
 
 
-
   // res.json(req.files)
   try {
     const image = { data: new Buffer.from(req.file.buffer, 'base64'), contentType: req.file.mimetype };
 
-    console.log(image, 'ahahahahahah');
 
     // const crearedOrder = await connect(() => Order.create({
     //   id: uuid(),
@@ -85,6 +79,7 @@ const createDish = async (req, res) => {
 };
 
 const getDishById = async ({ params: { id } }, res) => {
+  console.log('THIS IS A GET by ID');
   try {
     const dishById = await connect(async () => {
       const findDishById = await Menu.findOne({ id });
@@ -126,6 +121,7 @@ const getDishById = async ({ params: { id } }, res) => {
 // };
 
 const deleteDishById = async ({ params: { id } }, res) => {
+  console.log('THIS IS A DELETE');
   try {
     await connect(async () => await Menu.deleteOne({ id }));
     close();
