@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Layout from './components/Layout';
 import About from './pages/About';
 import NoPage from './pages/NoPage';
+import Menu from './pages/Menu';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
     <Route path="/" element={<Layout />}>
       <Route path="about" element={<About />} />
+      <Route path="menu" element={<Menu />} />
       <Route path="*" element={<NoPage />} />
     </Route>
 

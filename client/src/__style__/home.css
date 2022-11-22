@@ -1,0 +1,31 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70vh;
+}
+
+.homepage-logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-logo {
+  object-fit: contain;
+  width: 17rem;
+}
+.homepage-bg {
+  position: fixed;
+  z-index: -1;
+  height: 100vw;
+}
+.mobile-homepage-bg {
+  position: fixed;
+  z-index: -1;
+  width: 101vw;
+}
+
+.homepage--btn {
+  color:black;
+  border: black solid;
+}
