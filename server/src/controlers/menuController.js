@@ -1,18 +1,24 @@
 import { connect, close } from "../../db/db.js";
-import contentful from 'contentful-management';
+import contentful from 'contentful';
+// import contentful from 'contentful-management';
+import { Img, Menu } from "../../db/models.js";
 
 const client = contentful.createClient({
-  accessToken: '9Cw4DorLUKr3hOczvF-1Qk_YTYbN21MKvf3eOf25pxI'
+  space: '0658u1xd0vki',
+  environment: 'master',
+  accessToken: 'fRxVCdOpBzexXrf1H_yZ-uISKTvx382TEsex9BUz-Hs'
 })
 
 const getMenu = async (_, res) => {
-  console.log('THIS IS A GET');
   try {
-    const menu = await connect(() => Menu.find({}));
-    close();
-    res.status(200).json(menu);
+    client.getEntries()
+      .then(response => response.items.map(item => item.fields))
+      .then(products => res.status(200).json(products))
+    // const menu = await connect(() => Menu.find({}));
+    // close();
+    // res.status(200).json(menu);
   } catch ({ message }) {
-    close();
+    // close();
     res.status(404).json({ message });
   }
 };
@@ -20,37 +26,49 @@ const getMenu = async (_, res) => {
 //todo ----------------------------------------------------------------
 // const createDish = async ({ body: { name, description, price, currency } }, res) => {
 const createDish = async (req, res) => {
+  // console.log(req.body, 'BOOOODDDY');
   // console.log(req.files, 'yah');
   // console.log(req.files.file.data, 'yah');
 
+  // await connect(() => Img.create({ "Img": { data: req.files.file.data, contentType: req.files.file.mimetype } }));
+  // await connect(() => Img.create({ id: 1, file: req.files.file }));
+  // close();
+  // await connect(() => Menu.create({
+  //   "name": req.body.name,
+  //   "description": req.body.value,
+  //   "price": +req.body.price,
+  //   "currency": req.body.currency,
+  // }));
+  // close();
 
 
 
 
 
-  client.getSpace('0658u1xd0vki')
-    .then((space) => space.getEnvironment('master'))
-    .then((environment) => environment.createAsset({
-      fields: {
-        title: {
-          'en-US': 'Playsam Streamliner'
-        },
-        description: {
-          'en-US': 'Streamliner description'
-        },
-        file: {
-          'en-US': {
-            contentType: 'image/png',
-            fileName: req.files.file.name,
-            upload: 'https://i.pinimg.com/originals/0a/1f/82/0a1f820e29719c7b67e9d5aa44241155.png'
-            // upload: req.file
-          }
-        }
-      }
-    }))
-    .then((asset) => asset.processForAllLocales())
-    .then((asset) => console.log(asset))
-    .catch(console.error)
+
+  // client.getSpace('0658u1xd0vki')
+  //   .then((space) => space.getEnvironment('master'))
+  //   .then((environment) => environment.createAsset({
+  //     fields: {
+  //       title: {
+  //         'en-US': 'Playsam Streamliner'
+  //       },
+  //       description: {
+  //         'en-US': 'Streamliner description'
+  //       },
+  //       file: {
+  //         'en-US': {
+  //           contentType: 'image/png',
+  //           fileName: 'someImg',
+  //           upload: 'https://i.pinimg.com/originals/0a/1f/82/0a1f820e29719c7b67e9d5aa44241155.png'
+  //         }
+  //       }
+  //     }
+  //   }))
+  //   .then((asset) => asset.processForAllLocales())
+  //   .then((asset) => console.log(asset))
+  //   .catch(console.error)
+
 
 
 
@@ -79,7 +97,6 @@ const createDish = async (req, res) => {
 };
 
 const getDishById = async ({ params: { id } }, res) => {
-  console.log('THIS IS A GET by ID');
   try {
     const dishById = await connect(async () => {
       const findDishById = await Menu.findOne({ id });
@@ -121,7 +138,6 @@ const getDishById = async ({ params: { id } }, res) => {
 // };
 
 const deleteDishById = async ({ params: { id } }, res) => {
-  console.log('THIS IS A DELETE');
   try {
     await connect(async () => await Menu.deleteOne({ id }));
     close();

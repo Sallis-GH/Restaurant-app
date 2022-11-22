@@ -18,18 +18,35 @@ const OrderSchema = new Schema({
 const Order = model("Orders", OrderSchema);
 
 const menuSchema = new Schema({
-	"id": String,
+	// "id": String,
 	"name": String,
 	"description": String,
 	"price": Number,
 	"currency": String,
-	"img":
-	{
-		data: Buffer,
-		contentType: String
-	},
+	// "img":
+	// {
+	// 	data: Buffer,
+	// 	contentType: String
+	// },
 });
 
 const Menu = model("Menu", menuSchema);
 
-export { User, Order, Menu };
+const imgSchema = new Schema({
+	"id": Number,
+	"file": {
+		"name": String,
+		"data": Buffer,
+		"size": Number,
+		"encoding": String,
+		"tempFilePath": String,
+		"truncated": Boolean,
+		"mimetype": String,
+		"md5": String,
+		"mv": []
+	}
+})
+
+const Img = model("Img", imgSchema)
+
+export { User, Order, Menu, Img };
