@@ -1,6 +1,6 @@
-import { connect, close } from "../../db/db.js";
+// import { connect, close } from "../../db/db.js";
 import contentful from 'contentful-management';
-import { Menu } from "../../db/models.js";
+// import { Menu } from "../../db/models.js";
 
 const client = contentful.createClient({
   space: '0658u1xd0vki',
@@ -12,9 +12,9 @@ const getMenu = async (_, res) => {
   try {
 
     client.getSpace('0658u1xd0vki')
-      .then((space) => space.getEnvironment('master'))
-      .then((environment) => environment.getEntries())
-      .then((products) => res.status(200).json(products))
+      .then(space => space.getEnvironment('master'))
+      .then(environment => environment.getEntries())
+      .then(products => res.status(200).json(products))
     // const menu = await connect(() => Menu.find({}));
     // close();
     // res.status(200).json(menu);
@@ -29,8 +29,8 @@ const createDish = async (req, res) => {
 
   try {
     client.getSpace('0658u1xd0vki')
-      .then((space) => space.getEnvironment('master'))
-      .then((environment) => environment.createAssetFromFiles({
+      .then(space => space.getEnvironment('master'))
+      .then(environment => environment.createAssetFromFiles({
         fields: {
           title: {
             'en-US': req.files.image.name
@@ -47,10 +47,10 @@ const createDish = async (req, res) => {
           }
         }
       }))
-      .then((asset) => {
+      .then(asset => {
         return asset.processForAllLocales()
       })
-      .then((asset) => {
+      .then(asset => {
         asset.publish();
 
         client.getSpace('0658u1xd0vki')
@@ -62,8 +62,8 @@ const createDish = async (req, res) => {
             console.log(resp.fields.file, 'I AM THE IMAGE');
 
             client.getSpace('0658u1xd0vki')
-              .then((space) => space.getEnvironment('master'))
-              .then((environment) => environment.createEntry('pizza', {
+              .then(space => space.getEnvironment('master'))
+              .then(environment => environment.createEntry('pizza', {
                 fields: {
                   name: {
                     'en-US': req.body.name,
@@ -83,7 +83,7 @@ const createDish = async (req, res) => {
                   currency: { 'en-US': req.body.currency }
                 }
               }))
-              .then((entry) => entry.publish())
+              .then(entry => entry.publish())
           })
       })
       .catch(console.error)
@@ -100,9 +100,9 @@ const getDishById = async ({ params: { id } }, res) => {
   try {
 
     client.getSpace('0658u1xd0vki')
-      .then((space) => space.getEnvironment('master'))
-      .then((environment) => environment.getEntry(id))
-      .then((entry) => res.status(200).json(entry));
+      .then(space => space.getEnvironment('master'))
+      .then(environment => environment.getEntry(id))
+      .then(entry => res.status(200).json(entry));
     // const dishById = await connect(async () => {
     //   const findDishById = await Menu.findOne({ id });
     //   if (!findDishById) throw Error('Dish not found');
@@ -111,7 +111,7 @@ const getDishById = async ({ params: { id } }, res) => {
     // close();
     // res.status(200).json(dishById);
   } catch ({ message }) {
-    close();
+    // close();
     res.status(404).json({ message });
   }
 };
@@ -143,12 +143,21 @@ const getDishById = async ({ params: { id } }, res) => {
 // };
 
 const deleteDishById = async ({ params: { id } }, res) => {
+  console.log(id, "DELET");
   try {
-    await connect(async () => await Menu.deleteOne({ id }));
-    close();
-    res.status(204).send();
+    client.getSpace('0658u1xd0vki')
+      .then(space => space.getEnvironment('master'))
+      .then(environment => environment.getEntry(id))
+      .then(async entry => {
+        await entry.unpublish();
+        await entry.delete();
+      })
+      .then(() => res.status(204).send('Successfully deleted'));
+    // await connect(async () => await Menu.deleteOne({ id }));
+    // close();
+    // res.status(204).send();
   } catch ({ message }) {
-    close();
+    // close();
     res.status(404).json({ message });
   }
 };
