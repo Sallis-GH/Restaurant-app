@@ -1,6 +1,5 @@
+import { saveItem, saveItemWithImg } from "../utils/contentfulProvide.js";
 import contentful from 'contentful-management';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE,
@@ -8,9 +7,8 @@ const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_TOKEN,
 })
 
-const getMenu = async (_, res) => {
+const getMenu = (_, res) => {
   try {
-
     client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.getEntries())
@@ -20,71 +18,11 @@ const getMenu = async (_, res) => {
   }
 };
 
-const createDish = async (req, res) => {
+const createDish = (req, res) => {
   try {
-
-    // todo
-    // correct file from frontend
-    // check validation for name  price currency category REQUIRED
-
-
-    client.getSpace(process.env.CONTENTFUL_SPACE)
-      .then(space => space.getEnvironment('master'))
-      .then(environment => environment.createAssetFromFiles({
-        fields: {
-          title: {
-            'en-US': req.files.image.name
-          },
-          description: {
-            'en-US': 'Asset description'
-          },
-          file: {
-            'en-US': {
-              contentType: req.files.image.mimetype,
-              fileName: req.files.image.name,
-              file: req.files.image.data
-            }
-          }
-        }
-      }))
-      .then(asset => {
-        return asset.processForAllLocales()
-      })
-      .then(asset => {
-        asset.publish();
-
-        client.getSpace(process.env.CONTENTFUL_SPACE)
-          .then(space => space.getEnvironment('master'))
-          .then(environment => environment.createEntry('products', {
-            fields: {
-              name: {
-                'en-US': req.body.name,
-              },
-              description: {
-                'en-US': req.body.description,
-              },
-
-              image: {
-                'en-US': {
-                  "sys": {
-                    "type": "Link",
-                    "linkType": "Asset",
-                    "id": asset.sys.id
-                  }
-                }
-              },
-
-              price: { 'en-US': +req.body.price },
-              currency: { 'en-US': req.body.currency },
-              category: { 'en-US': req.body.category },
-              ingredients: { 'en-US': JSON.parse(req.body.ingredients) }
-            }
-          }))
-          .then(async entry => {
-            await entry.publish();
-            await res.status(200).send();
-          })
-      })
+    if (req.body.name && req.body.price && req.body.currency && req.body.category) {
+      req.file ? saveItemWithImg(req, res) : saveItem(req, res);
+    };
   } catch ({ _message }) {
     res
       .status(400)
@@ -92,7 +30,7 @@ const createDish = async (req, res) => {
   }
 };
 
-const getDishById = async ({ params: { id } }, res) => {
+const getDishById = ({ params: { id } }, res) => {
   try {
     client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
@@ -129,8 +67,7 @@ const getDishById = async ({ params: { id } }, res) => {
 //   }
 // };
 
-const deleteDishById = async ({ params: { id } }, res) => {
-  console.log(id, "DELET");
+const deleteDishById = ({ params: { id } }, res) => {
   try {
     client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
