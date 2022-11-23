@@ -59,7 +59,7 @@ const createDish = async (req, res) => {
 
             client.getSpace(process.env.CONTENTFUL_SPACE)
               .then(space => space.getEnvironment('master'))
-              .then(environment => environment.createEntry('pizza', {
+              .then(environment => environment.createEntry('products', {
                 fields: {
                   name: {
                     'en-US': req.body.name,
@@ -69,6 +69,15 @@ const createDish = async (req, res) => {
                   },
 
                   // todo
+                  // image: {
+                  //   'en-US': {
+                  //     sys: {
+                  //       type: 'image/jpeg',
+                  //       Asset: resp.fields.file['en-US'].url,
+                  //     }
+                  //   }
+                  // },
+
                   // image: {
                   //   'en-GB': {
                   //     contentType: 'image/jpeg',
@@ -80,11 +89,12 @@ const createDish = async (req, res) => {
                   currency: { 'en-US': req.body.currency }
                 }
               }))
-              .then(entry => entry.publish())
+              .then(async entry => {
+                await entry.publish();
+                await res.status(200).send();
+              })
           })
       })
-      .catch(console.error)
-    res.status(200).send();
     //todo----------------------------------------------------------------
   } catch ({ _message }) {
     res
