@@ -5,6 +5,8 @@ import Layout from './components/Layout';
 import About from './pages/About';
 import NoPage from './pages/NoPage';
 import Menu from './pages/Menu';
+import Order from './pages/Order';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
     <Route path="/" element={<Layout />}>
       <Route path="about" element={<About />} />
       <Route path="menu" element={<Menu />} />
+      <Route path="order" element={<Order />} />
+      <Route path="checkout" element={<Checkout />} />
       <Route path="*" element={<NoPage />} />
     </Route>
 
