@@ -1,25 +1,21 @@
-// import { connect, close } from "../../db/db.js";
 import contentful from 'contentful-management';
-// import { Menu } from "../../db/models.js";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const client = contentful.createClient({
-  space: '0658u1xd0vki',
+  space: process.env.CONTENTFUL_SPACE,
   environment: 'master',
-  accessToken: 'CFPAT-sCrJdSzlCnRkvR9soZIkr4B26NLwoVIUOcWgJs-pHDc',
+  accessToken: process.env.CONTENTFUL_TOKEN,
 })
 
 const getMenu = async (_, res) => {
   try {
 
-    client.getSpace('0658u1xd0vki')
+    client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.getEntries())
       .then(products => res.status(200).json(products))
-    // const menu = await connect(() => Menu.find({}));
-    // close();
-    // res.status(200).json(menu);
   } catch ({ message }) {
-    // close();
     res.status(404).json({ message });
   }
 };
@@ -28,7 +24,7 @@ const getMenu = async (_, res) => {
 const createDish = async (req, res) => {
 
   try {
-    client.getSpace('0658u1xd0vki')
+    client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.createAssetFromFiles({
         fields: {
@@ -53,7 +49,7 @@ const createDish = async (req, res) => {
       .then(asset => {
         asset.publish();
 
-        client.getSpace('0658u1xd0vki')
+        client.getSpace(process.env.CONTENTFUL_SPACE)
           .then(space => space.getEnvironment('master'))
           .then(environment => environment.getAsset(asset.sys.id))
           .then(resp => {
@@ -61,7 +57,7 @@ const createDish = async (req, res) => {
             // console.log(resp.fields.file['en-US'].url, 'I AM THE IMAGE');
             console.log(resp.fields.file, 'I AM THE IMAGE');
 
-            client.getSpace('0658u1xd0vki')
+            client.getSpace(process.env.CONTENTFUL_SPACE)
               .then(space => space.getEnvironment('master'))
               .then(environment => environment.createEntry('pizza', {
                 fields: {
@@ -72,13 +68,14 @@ const createDish = async (req, res) => {
                     'en-US': req.body.description,
                   },
 
-                  image: {
-                    'en-GB': {
-                      contentType: 'image/jpeg',
-                      fileName: 'test.jpg',
-                      upload: resp.fields.file['en-US'].url
-                    }
-                  },
+                  // todo
+                  // image: {
+                  //   'en-GB': {
+                  //     contentType: 'image/jpeg',
+                  //     fileName: 'test.jpg',
+                  //     upload: resp.fields.file['en-US'].url
+                  //   }
+                  // },
                   price: { 'en-US': +req.body.price },
                   currency: { 'en-US': req.body.currency }
                 }
@@ -98,20 +95,11 @@ const createDish = async (req, res) => {
 
 const getDishById = async ({ params: { id } }, res) => {
   try {
-
-    client.getSpace('0658u1xd0vki')
+    client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.getEntry(id))
       .then(entry => res.status(200).json(entry));
-    // const dishById = await connect(async () => {
-    //   const findDishById = await Menu.findOne({ id });
-    //   if (!findDishById) throw Error('Dish not found');
-    //   return findOrderById
-    // });
-    // close();
-    // res.status(200).json(dishById);
   } catch ({ message }) {
-    // close();
     res.status(404).json({ message });
   }
 };
@@ -145,7 +133,7 @@ const getDishById = async ({ params: { id } }, res) => {
 const deleteDishById = async ({ params: { id } }, res) => {
   console.log(id, "DELET");
   try {
-    client.getSpace('0658u1xd0vki')
+    client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.getEntry(id))
       .then(async entry => {
@@ -153,11 +141,7 @@ const deleteDishById = async ({ params: { id } }, res) => {
         await entry.delete();
       })
       .then(() => res.status(204).send('Successfully deleted'));
-    // await connect(async () => await Menu.deleteOne({ id }));
-    // close();
-    // res.status(204).send();
   } catch ({ message }) {
-    // close();
     res.status(404).json({ message });
   }
 };

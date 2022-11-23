@@ -1,8 +1,8 @@
+import * as dotenv from 'dotenv';
 import routes from './src/app.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import * as dotenv from 'dotenv';
 import fileUpload from 'express-fileupload';
 dotenv.config();
 
