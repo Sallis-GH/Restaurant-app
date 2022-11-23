@@ -20,10 +20,14 @@ const getMenu = async (_, res) => {
   }
 };
 
-//todo ----------------------------------------------------------------
 const createDish = async (req, res) => {
-
   try {
+
+    // todo
+    // correct file from frontend
+    // check validation for name  price currency category REQUIRED
+
+
     client.getSpace(process.env.CONTENTFUL_SPACE)
       .then(space => space.getEnvironment('master'))
       .then(environment => environment.createAssetFromFiles({
@@ -51,51 +55,36 @@ const createDish = async (req, res) => {
 
         client.getSpace(process.env.CONTENTFUL_SPACE)
           .then(space => space.getEnvironment('master'))
-          .then(environment => environment.getAsset(asset.sys.id))
-          .then(resp => {
+          .then(environment => environment.createEntry('products', {
+            fields: {
+              name: {
+                'en-US': req.body.name,
+              },
+              description: {
+                'en-US': req.body.description,
+              },
 
-            // console.log(resp.fields.file['en-US'].url, 'I AM THE IMAGE');
-            console.log(resp.fields.file, 'I AM THE IMAGE');
-
-            client.getSpace(process.env.CONTENTFUL_SPACE)
-              .then(space => space.getEnvironment('master'))
-              .then(environment => environment.createEntry('products', {
-                fields: {
-                  name: {
-                    'en-US': req.body.name,
-                  },
-                  description: {
-                    'en-US': req.body.description,
-                  },
-
-                  // todo
-                  // image: {
-                  //   'en-US': {
-                  //     sys: {
-                  //       type: 'image/jpeg',
-                  //       Asset: resp.fields.file['en-US'].url,
-                  //     }
-                  //   }
-                  // },
-
-                  // image: {
-                  //   'en-GB': {
-                  //     contentType: 'image/jpeg',
-                  //     fileName: 'test.jpg',
-                  //     upload: resp.fields.file['en-US'].url
-                  //   }
-                  // },
-                  price: { 'en-US': +req.body.price },
-                  currency: { 'en-US': req.body.currency }
+              image: {
+                'en-US': {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Asset",
+                    "id": asset.sys.id
+                  }
                 }
-              }))
-              .then(async entry => {
-                await entry.publish();
-                await res.status(200).send();
-              })
+              },
+
+              price: { 'en-US': +req.body.price },
+              currency: { 'en-US': req.body.currency },
+              category: { 'en-US': req.body.category },
+              ingredients: { 'en-US': JSON.parse(req.body.ingredients) }
+            }
+          }))
+          .then(async entry => {
+            await entry.publish();
+            await res.status(200).send();
           })
       })
-    //todo----------------------------------------------------------------
   } catch ({ _message }) {
     res
       .status(400)
