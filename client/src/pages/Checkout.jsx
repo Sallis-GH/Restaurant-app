@@ -5,7 +5,7 @@ const Checkout = () => {
     const [country, setCountry] = useState("");
     const [state, setState] = useState("");
   return (
-    <div className="checkout-container px-4">
+    <div className="checkout-container px-4 my-4">
     <div className="row g-5">
       <div className="col-md-5 col-lg-4 order-md-last">
         <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -18,32 +18,32 @@ const Checkout = () => {
               <h6 className="my-0">Product name</h6>
               <small className="text-muted">Brief description</small>
             </div>
-            <span className="text-muted">$12</span>
+            <span className="text-muted">120 kr</span>
           </li>
           <li className="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 className="my-0">Second product</h6>
               <small className="text-muted">Brief description</small>
             </div>
-            <span className="text-muted">$8</span>
+            <span className="text-muted">80 kr</span>
           </li>
           <li className="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 className="my-0">Third item</h6>
               <small className="text-muted">Brief description</small>
             </div>
-            <span className="text-muted">$5</span>
+            <span className="text-muted">50 kr</span>
           </li>
           <li className="list-group-item d-flex justify-content-between bg-light">
             <div className="text-success">
               <h6 className="my-0">Promo code</h6>
               <small>EXAMPLECODE</small>
             </div>
-            <span className="text-success">−$5</span>
+            <span className="text-success">−50 kr</span>
           </li>
           <li className="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+            <span>Total (SEK)</span>
+            <strong>200 kr</strong>
           </li>
         </ul>
 
@@ -100,7 +100,7 @@ const Checkout = () => {
               <label for="country" className="form-label">Country</label>
               <select className="form-select" onChange={e => setCountry(e.target.value)} id="country" required="">
                 <option value="">Choose...</option>
-                <option>United States</option>
+                <option>Sweden</option>
               </select>
               <div className="invalid-feedback">
                 Please select a valid country.
@@ -111,7 +111,10 @@ const Checkout = () => {
               <label for="state" className="form-label">State</label>
               <select className="form-select" onChange={e => setState(e.target.value)} id="state" required="">
                 <option value="">Choose...</option>
-                <option>California</option>
+                <option>Stockholm</option>
+                <option>Uppsala</option>
+                <option>Sollentuna</option>
+
               </select>
               <div className="invalid-feedback">
                 Please provide a valid state.
