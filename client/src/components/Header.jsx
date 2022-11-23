@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/logo.png'
 import '../__style__/header.css'
@@ -6,17 +6,6 @@ import '../__style__/header.css'
 
 
 const Header = () => {
-
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
-
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 650);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
