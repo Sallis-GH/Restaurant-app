@@ -32,21 +32,4 @@ const menuSchema = new Schema({
 
 const Menu = model("Menu", menuSchema);
 
-const imgSchema = new Schema({
-	"id": Number,
-	"file": {
-		"name": String,
-		"data": Buffer,
-		"size": Number,
-		"encoding": String,
-		"tempFilePath": String,
-		"truncated": Boolean,
-		"mimetype": String,
-		"md5": String,
-		"mv": []
-	}
-})
-
-const Img = model("Img", imgSchema)
-
-export { User, Order, Menu, Img };
+export { User, Order, Menu };
