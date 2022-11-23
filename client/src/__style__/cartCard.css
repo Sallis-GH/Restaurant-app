@@ -1,0 +1,21 @@
+.del-item-cart {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 50%;
+  width: 38px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 12px 2px;
+}
+
+.del-item-cart:hover {
+  background-color: black;
+  color: white;
+}
+
+@media screen and (min-width: 992px) {
+  .del-item-cart {
+    padding: 0 5px 2px;
+  }
+}
