@@ -23,10 +23,10 @@ const Header = () => {
                 <img src={logo} alt="logo" className='header-logo' />
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" href="#">Link</Link>
-            </li>
-            <li className="nav-item dropdown">
+            </li> */}
+            {/* <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown
               </Link>
@@ -36,7 +36,7 @@ const Header = () => {
                 <li><hr className="dropdown-divider" /></li>
                 <li><Link className="dropdown-item" href="#">Something else here</Link></li>
               </ul>
-            </li>
+            </li> */}
           </ul>
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
