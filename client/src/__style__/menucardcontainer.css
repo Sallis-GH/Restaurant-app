@@ -1,24 +1,32 @@
 .card-container {
-  /* width: 300px; */
-  min-width: 40%;
-  /* height: 220px; */
-  min-height: 15rem;
+  max-width: 280px;
+  padding: 0;
 }
 
-.card-image{
-  width: 100%;
+.add-to-cart--btn {
+  color:black;
+  border: black solid;
+}
+.add-to-cart--btn:hover {
+  background-color: rgb(40, 40, 40);
 }
 
-/* @media screen and (min-width: 425px) {
-  
-  .card-img {
-    width: 100%;
-    height: 18rem;
+.quantity-text {
+    min-width: 42px;
+    text-align: center;
+}
+
+
+@media screen and (min-width: 768px) {
+  .card-image {
+    width: 10rem;
+    height: 10rem;
+  }
+  .card-inside-container {
+    height: 100%;
+  }
+  .card-container {
+    max-width: 48%;
+    padding: 0;
   }
 }
-.card-container {
-  padding: 0;
-  width: 30%;
-  max-width: 30%;
-  margin-right: 2rem;
-} */

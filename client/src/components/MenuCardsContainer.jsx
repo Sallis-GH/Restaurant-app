@@ -1,12 +1,13 @@
 import React from 'react'
 import MenuCard from './MenuCard'
 
-const MenuCardContainer = ({ menus, category }) => {
+const MenuCardContainer = ({ menus, category, cart, setCart }) => {
 
   return (
     <section className='container'>
-      <div className='row'>
-        <h1>{category}</h1>
+      <div className='row d-flex justify-content-between'>
+        <h1 className='border-bottom text-left'>{category}</h1>
+        <div className='mt-4'></div>
         {menus?.map((item, index) => (
           <MenuCard key={index}
             name={item.name}
