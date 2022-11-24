@@ -28,7 +28,7 @@ const Header = () => {
         <div className="collapse navbar-collapse pt-2" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
             <li className="nav-item">
-              <Link to='/'>
+            <Link to='/'>
               <img src={logo} alt="" srcset="" className='header-logo' />
               </Link>
             </li>
