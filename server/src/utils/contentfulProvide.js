@@ -2,7 +2,6 @@ import contentful from 'contentful-management';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-let imageID = '';
 
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE,
@@ -29,7 +28,7 @@ const saveImage = async file => {
     .then(asset => asset.processForAllLocales())
     .then(asset => {
       asset.publish();
-      return imageID = asset.sys.id;
+      return asset.sys.id;
     });
 }
 
@@ -54,7 +53,8 @@ const saveItem = (req, res) => {
 
 const saveItemWithImg = (req, res) => {
   saveImage(req.files.image)
-    .then(() => {
+    .then((imageID) => {
+      console.log(resp, 'resp');
       client.getSpace(process.env.CONTENTFUL_SPACE)
         .then(space => space.getEnvironment('master'))
         .then(environment => {
@@ -103,7 +103,7 @@ const updateItem = (req, res) => {
 
 const updateItemWithImg = (req, res) => {
   saveImage(req.files.image)
-    .then(() => {
+    .then((imageID) => {
       client.getSpace(process.env.CONTENTFUL_SPACE)
         .then(space => space.getEnvironment('master'))
         .then((environment) => environment.getEntry('products'))
@@ -113,7 +113,7 @@ const updateItemWithImg = (req, res) => {
           entry.fields.image['en-US']['sys'] = {
             "type": "Link",
             "linkType": "Asset",
-            "id": asset.sys.id
+            "id": imageID
           }
           entry.fields.price['en-US'] = +req.body.price;
           entry.fields.currency['en-US'] = req.body.currency;
