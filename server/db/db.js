@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const url = 'mongodb+srv://admsFamilySalt:4xxl9yYXvhnEAI45@restaurant-app-db.d4eqtgh.mongodb.net/restaurant';
+const url = `mongodb+srv://admsFamilySalt:${process.env.MONGODB_PSW}@restaurant-app-db.d4eqtgh.mongodb.net/restaurant`;
 
 const connect = async (cb) => {
   await mongoose.connect(url, {
