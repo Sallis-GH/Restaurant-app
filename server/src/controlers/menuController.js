@@ -1,4 +1,4 @@
-import { saveItem, saveItemWithImg } from "../utils/contentfulProvide.js";
+import { saveItem, saveItemWithImg, updateItem } from "../utils/contentfulProvide.js";
 import contentful from 'contentful-management';
 
 const client = contentful.createClient({
@@ -21,7 +21,7 @@ const getMenu = (_, res) => {
 const createDish = (req, res) => {
   try {
     if (req.body.name && req.body.price && req.body.currency && req.body.category) {
-      req.file ? saveItemWithImg(req, res) : saveItem(req, res);
+      req.files ? saveItemWithImg(req, res) : saveItem(req, res);
     };
   } catch ({ _message }) {
     res
@@ -41,31 +41,15 @@ const getDishById = ({ params: { id } }, res) => {
   }
 };
 
-// const updateDishById = async (
-//   { body: { address, orders }, params: { id } },
-//   res
-// ) => {
-//   try {
-//     console.log(address, orders, " LOGING THE BODY");
-//     const updatedOrder = await connect(async () => {
-//       const orderToUpdate = await Order.findOne({ id });
-//       if (!orderToUpdate) throw Error('Order not found')
-//       console.log(orderToUpdate, "FOUND BY ID");
-//       address ? orderToUpdate.address = address : "";
-//       orders ? orderToUpdate.orders = orders : "";
-//       console.log(orderToUpdate, "AFTRE MANIPULATING");
-//       await orderToUpdate.save();
-//       return orderToUpdate;
-//     });
-//     close();
-//     res.json(updatedOrder);
-//   } catch ({ message }) {
-//     close();
-//     res
-//       .status(404)
-//       .json({ message });
-//   }
-// };
+const updateDishById = (req, res) => {
+  try {
+    // todo----------------------------------------------------------------
+    // updateItem(req, res);
+    // todo ----------------------------------------------------------------
+  } catch ({ message }) {
+    res.status(404).json({ message });
+  }
+};
 
 const deleteDishById = ({ params: { id } }, res) => {
   try {
@@ -82,4 +66,4 @@ const deleteDishById = ({ params: { id } }, res) => {
   }
 };
 
-export { createDish, getMenu, getDishById, deleteDishById };
+export { createDish, getMenu, getDishById, updateDishById, deleteDishById };
