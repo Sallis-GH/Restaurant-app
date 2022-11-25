@@ -1,12 +1,14 @@
 import { useState, useRef } from 'react'
-import { useOutletContext } from 'react-router-dom';
 import '../__style__/menucardcontainer.css'
 
-const MenuCard = ({ name, description, image, price, currency }) => {
+const MenuCard = ({ name, description, image, price, currency, getProductData }) => {
 
-  const addToCart = useRef();
+  const quantityRef = useRef(0);
   const [quantity, setQuantity] = useState(0)
-  const [cart, setCart] = useOutletContext()
+  
+  const handleGetProductData = (obj) => {
+    getProductData(obj);
+  }
 
   //name, price, currency, quantity
 
@@ -18,7 +20,7 @@ const MenuCard = ({ name, description, image, price, currency }) => {
           <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
           <div className='row'>
             <div className='col-6'>
-              <button type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
+              <button onClick={() => handleGetProductData({ name, price:+price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
             </div>
             <div className='col-6'>
               <div className="input-group mb-3">
@@ -28,7 +30,6 @@ const MenuCard = ({ name, description, image, price, currency }) => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     )
@@ -49,12 +50,12 @@ const MenuCard = ({ name, description, image, price, currency }) => {
             <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
             <div className='row'>
               <div className='col-6'>
-                <button type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
+                <button onClick={() => handleGetProductData({ name, price:+price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
               </div>
               <div className='col-6'>
                 <div className="input-group mb-3">
                   <button onClick={() => quantity ? setQuantity(quantity - 1) : null} type="button" className="btn btn-outline-success border border-3 border-end-0 border-success ">-</button>
-                  <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success '>{quantity}</span>
+                  <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success' ref={quantityRef}>{quantity}</span>
                   <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success ">+</button>
                 </div>
               </div>
