@@ -27,6 +27,7 @@ const Layout = () => {
     console.log('checkout');
   }
 
+
   return (
     <>
       <Header cart={cart} deleteItem={deleteItem} checkout={checkout} />

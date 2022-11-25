@@ -19,7 +19,7 @@ const Header = ({ cart, deleteItem, checkout }) => {
   }
 
   return (
-    <>
+    <header className='container'>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,9 @@ const Header = ({ cart, deleteItem, checkout }) => {
               <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
+        </div>
+      </nav>
+    </header>
           <div className='d-flex align-item-center'>
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
             {quantity !== 0 && <p className='notification'> {quantity} </p>}
@@ -71,7 +74,6 @@ const Header = ({ cart, deleteItem, checkout }) => {
         </div>
         <button className='btn btn-success' onClick={checkout} >Go to checkout!</button>
       </div>
-    </>
   )
 }
 
