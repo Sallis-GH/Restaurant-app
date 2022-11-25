@@ -7,6 +7,7 @@ import NoPage from './pages/NoPage';
 import Menu from './pages/Menu';
 import Order from './pages/Order';
 import Checkout from './pages/Checkout';
+import ThankYou from './pages/Thankyou';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="order" element={<Order />} />
       <Route path="checkout" element={<Checkout />} />
       <Route path="*" element={<NoPage />} />
+      <Route path="thankyou" element={<ThankYou />} />
     </Route>
 
   </Routes>

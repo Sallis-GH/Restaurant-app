@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom'
 import '../__style__/checkout.css';
 
 const Checkout = () => {
@@ -198,8 +199,9 @@ const Checkout = () => {
           </div>
 
           <hr className="my-4" />
-
-          <button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <Link to='/thankyou'>
+          <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
+          </Link>
         </form>
       </div>
     </div>

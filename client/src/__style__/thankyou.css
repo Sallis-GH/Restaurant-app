@@ -1,0 +1,20 @@
+.gif-container{
+    width: 35vw; 
+ 
+}
+.gif{
+    width: 35vw;
+    
+}
+
+
+@media screen and (min-width: 992px){
+.gif-container{
+    width: 20vw; 
+ 
+}
+.gif{
+    width: 20vw;
+    
+}
+}
