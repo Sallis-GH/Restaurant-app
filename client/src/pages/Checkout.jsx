@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
+import Modal from '../components/Modal';
+// import { Loading } from '../components/loading'
 import '../__style__/checkout.css';
 
 const Checkout = () => {
     const [country, setCountry] = useState("");
     const [state, setState] = useState("");
+
   return (
     <div className="checkout-container px-4 my-4">
     <div className="row g-5">
@@ -199,7 +202,8 @@ const Checkout = () => {
 
           <hr className="my-4" />
           <Link to='/thankyou'>
-          <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
+          <Modal />
+          {/* <button onclick={loading} className="w-100 btn btn-primary btn-lg" variant="success" type="submit">Place Order</button> */}
           </Link>
         </form>
       </div>
