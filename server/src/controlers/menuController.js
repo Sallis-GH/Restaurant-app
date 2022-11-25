@@ -1,9 +1,21 @@
-import { contentfulMenu, saveItem, saveItemWithImg, dishByMenu, updateItem, updateItemWithImg, contentfullDelete } from "../utils/contentfulProvide.js";
+import { saveItem, saveItemWithImg, dishByMenu, updateItem, updateItemWithImg, contentfullDelete } from "../utils/contentfulProvide.js";
+
+
+import contentful from 'contentful'
+
+const client = contentful.createClient({
+  space: process.env.CONTENTFUL_SPACE,
+  environment: 'master',
+  accessToken: process.env.CONTENTFUL_PUBLISH_KEY
+})
+
+
 
 
 const getMenu = (_, res) => {
   try {
-    contentfulMenu(res);
+    client.getEntries()
+      .then((response) => res.send(response.items))
   } catch ({ message }) {
     res.status(404).json({ message });
   }

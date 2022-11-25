@@ -9,13 +9,6 @@ const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_TOKEN,
 })
 
-const contentfulMenu = res => {
-  client.getSpace(process.env.CONTENTFUL_SPACE)
-    .then(space => space.getEnvironment('master'))
-    .then(environment => environment.getEntries())
-    .then(products => res.status(200).json(products))
-}
-
 const saveImage = async file => {
   return await client.getSpace(process.env.CONTENTFUL_SPACE)
     .then(space => space.getEnvironment('master'))
@@ -140,4 +133,4 @@ const contentfullDelete = (id, res) => {
     .then(() => res.status(204).send('Successfully deleted'));
 };
 
-export { contentfulMenu, saveItem, saveItemWithImg, dishByMenu, updateItem, updateItemWithImg, contentfullDelete }
+export { saveItem, saveItemWithImg, dishByMenu, updateItem, updateItemWithImg, contentfullDelete }

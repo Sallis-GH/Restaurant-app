@@ -28,11 +28,11 @@ const MenuCardContainer = ({ menus, category }) => {
         <div className='mt-4'></div>
         {menus?.map((item, index) => (
           <MenuCard key={index}
-            name={item.name}
-            description={item.description}
-            image={item.image?.fields.file.url}
-            price={item.price}
-            currency={item.currency}
+            name={item.fields.name}
+            description={item.fields.description}
+            image={item.fields.image?.fields.file.url}
+            price={item.fields.price}
+            currency={item.fields.currency}
             getProductData={getProductData}
           />))}
       </div>

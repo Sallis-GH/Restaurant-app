@@ -12,6 +12,8 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
 
   //name, price, currency, quantity
 
+  console.log(price);
+
   if (!image) {
     return (
       <div className="card w-25 ms-2 mb-2 card-container">

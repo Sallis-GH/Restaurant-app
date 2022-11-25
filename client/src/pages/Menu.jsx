@@ -9,15 +9,16 @@ const Menu = ({test}) => {
     fetch('http://localhost:8080/api/menu')
       .then(data => data.json())
       .then(data => {
+        console.log(data);
         setMenus(data)
       })
   }, [])
   
-  const starters = menus?.filter(item => item?.category.toLowerCase() === 'starter')
-  const sides = menus?.filter(item => item?.category.toLowerCase() === 'sides')
-  const pizzas = menus?.filter(item => item?.category.toLowerCase() === 'pizza')
-  const drinks = menus?.filter(item => item?.category.toLowerCase() === 'drink')
-  const desserts = menus?.filter(item => item?.category.toLowerCase() === 'dessert')
+  const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')
+  const sides = menus?.filter(item => item?.fields.category.toLowerCase() === 'sides')
+  const pizzas = menus?.filter(item => item?.fields.category.toLowerCase() === 'pizza')
+  const drinks = menus?.filter(item => item?.fields.category.toLowerCase() === 'drink')
+  const desserts = menus?.filter(item => item?.fields.category.toLowerCase() === 'dessert')
 
   return (
     <>
