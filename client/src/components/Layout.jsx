@@ -6,6 +6,7 @@ const Layout = () => {
   const [cart, setCart] = useState([]);
 
   const addCart = async () => {
+    // mock cart
     setCart([{ name: 'Magherita', price: 100, currency: "SEK", quantity: 2 }, { name: 'Marinara', price: 80, currency: "SEK", quantity: 1 }, { name: 'Choco Cake', price: 80, currency: "SEK", quantity: 2 }]);
   };
 
@@ -28,7 +29,6 @@ const Layout = () => {
 
   return (
     <>
-      <button onClick={addCart} > add </button>
       <Header cart={cart} deleteItem={deleteItem} checkout={checkout} />
       <Outlet />
     </>
