@@ -1,9 +1,23 @@
 .header-logo {
   display: none;
 }
+
 .header-logo-mobile {
   display: block;
   width: 6rem;
+}
+
+.notification {
+  background-color: red;
+  position: relative;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  padding: 0 5px;
+  top: 9px;
+  left: -23px;
 }
 
 @media screen and (min-width: 992px) {
@@ -14,7 +28,6 @@
 
   .header-logo {
     display: block;
-    width: 20vw;
+    width: 12vw;
   }
-
 }

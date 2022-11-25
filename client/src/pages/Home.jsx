@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      {isDesktop ? <img className='homepage-bg' src={background} alt="" srcset="" /> : <img className='mobile-homepage-bg' src={mobilebg} alt="" srcset="" />}
+      {isDesktop ? <img className='homepage-bg' src={background} alt="" /> : <img className='mobile-homepage-bg' src={mobilebg} alt="" />}
       <figure className='homepage-logo-container pt-3'>
         <img className='homepage-logo mt-5' src={logo} alt="Logo" />
       </figure>
