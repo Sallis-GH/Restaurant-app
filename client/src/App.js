@@ -9,6 +9,7 @@ import AddMenu from './pages/AddMenu';
 import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import ThankYou from './pages/Thankyou';
+import RestaurantLogin from './pages/RestaurantLogin';
 
 function App() {
   return (
@@ -17,16 +18,17 @@ function App() {
 
       <Route path="/business-login/addmenu" element={<AddMenu />} />
 
-    <Route path="/" element={<Layout />}>
-      <Route path="about" element={<About />} />
-      <Route path="menu" element={<Menu />} />
-      <Route path="order" element={<Order />} />
-      <Route path="checkout" element={<Checkout />} />
-      <Route path="*" element={<NoPage />} />
-      <Route path="thankyou" element={<ThankYou />} />
-    </Route>
+      <Route path="/" element={<Layout />}>
+        <Route path="about" element={<About />} />
+        <Route path="menu" element={<Menu />} />
+        <Route path="order" element={<Order />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="*" element={<NoPage />} />
+        <Route path="thankyou" element={<ThankYou />} />
+        <Route path="restaurant/login" element={<RestaurantLogin />} />
+      </Route>
 
-  </Routes>
+    </Routes>
   );
 }
 
