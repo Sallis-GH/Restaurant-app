@@ -10,6 +10,8 @@ const getMenu = (_, res) => {
 };
 
 const createDish = (req, res) => {
+  console.log(req.files, 'image');
+  // console.log('dassdsaa');
   try {
     if (req.body.name && req.body.price && req.body.currency && req.body.category) {
       req.files ? saveItemWithImg(req, res) : saveItem(req, res);
