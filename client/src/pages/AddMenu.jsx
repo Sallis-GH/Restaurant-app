@@ -2,6 +2,7 @@ import '../__style__/AddMenu.css'
 import { useEffect, useState, useRef } from 'react'
 import InputOptionComp from '../components/InputOptionComp'
 import IngredientInput from '../components/IngredientInput'
+import axios from 'axios';
 
 
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
@@ -24,10 +25,19 @@ const AddMenu = () => {
 const [formValues, setFormValues] = useState({});
 const [ingredientsFormValues, setIngredientsFormValues] = useState([]);
 const [toggle, setToggle] = useState(false);
+const [image, setImage] = useState(null);
+console.log(image, "setImage");
 const inputRef = useRef();
 
 const handleChange = (e) => {
 	setFormValues({ ...formValues, [e.target.id]: e.target.value });
+};
+
+const handleImgChange = (e) => {
+	console.log(e.target.value, 'e.target.value');
+	console.log(e.target.files, 'e.target.files');
+	console.log(e.target.files[0], 'e.target.files[0]');
+	setImage(e.target.files[0])
 };
 
 const ingredientsHandleChange = (e, index) => {
@@ -60,24 +70,36 @@ const addBtnClick = (e) => {
 
 const handleSubmit = (e) => {
 	e.preventDefault();
+	const img = new FormData(); 
 	
+	img.append('img', image);
+
+	console.log(img, "IMAGE");
+	console.log(image, "IMAGE");
+
+
 	const ingredients = ingredientsFormValues.reduce((res, ing) => {
 	return	{ ...res, [(ing.label).toLowerCase()]: ing.value }
 	},{})
 
 	const product = {
 		...formValues,
+		img,
 		ingredients: {...ingredients},
 	}
 	product.ingredients = ingredients
 
 	console.log(product,'product');
 	console.log(ingredients,'ingredients');
-	console.log(
-		ingredientsFormValues.map((val) => {
-			return { [val.label]: val.value };
-		})
-	, formValues);
+
+	// axios.post('http://localhost:8080/api/menu/newDish', product)
+  // .then(function (response) {
+  //   console.log(response, 'response');
+  // })
+  // .catch(function (error) {
+  //   console.log(error, 'error');
+  // });
+
 };
 
 return (
@@ -97,8 +119,8 @@ return (
 			</div>
 
 			<div className="mb-3">
-				<label className="form-label" htmlFor="categories">Categories</label>
-				<select id="categories" className="form-select" onChange={handleChange}>
+				<label className="form-label" htmlFor="category">Category</label>
+				<select id="category" className="form-select" onChange={handleChange}>
 					{categories.map((category, i) => <InputOptionComp key={i} value={category}/>)}
 				</select>
 			</div>
@@ -127,7 +149,7 @@ return (
 
 			<div className="mb-3">
 				<label className="form-label"  htmlFor="img">Choose image:</label>
-				<input type="file" className="form-control" id='img' onChange={handleChange} accept="image/png, image/jpeg"/>
+				<input type="file" className="form-control" id='img' onChange={handleImgChange} accept=""/>
 			</div>
 
 			<section className="mt-4 p-4  rounded">
