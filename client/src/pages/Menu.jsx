@@ -38,11 +38,11 @@ const Menu = () => {
 
   return (
     <>
-      <MenuCardsContainer menus={starters} category={starters?.[0].category} getProductData={getProductData}/>
-      <MenuCardsContainer menus={sides} category={sides?.[0].category} getProductData={getProductData}/>
-      <MenuCardsContainer menus={pizzas} category={pizzas?.[0].category} getProductData={getProductData}/>
-      <MenuCardsContainer menus={desserts} category={desserts?.[0].category} getProductData={getProductData}/>
-      <MenuCardsContainer menus={drinks} category={drinks?.[0].category} getProductData={getProductData}/>
+      <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData}/>
+      <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData}/>
+      <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData}/>
+      <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData}/>
+      <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData}/>
     </>
   )
 }

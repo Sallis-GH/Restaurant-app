@@ -18,7 +18,7 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="vh-50 d-flex justify-content-center">
-       {isDesktop ? <img className='about-img' src={aboutImg} alt="" srcset="" /> : <img className='about-img-mobile' src={aboutImgMobile} alt="" srcset="" />}
+       {isDesktop ? <img className='about-img' src={aboutImg} alt="" srcSet="" /> : <img className='about-img-mobile' src={aboutImgMobile} alt="" srcSet="" />}
      </div>
      
      <section className="mx-5 my-5">
@@ -29,14 +29,14 @@ const About = () => {
 
           <div className="row">
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i class="far fa-paper-plane text-primary "></i> Lorem ipsum dolor sit amet.?</h6>
+              <h6 className="mb-3 text-primary"><i className="far fa-paper-plane text-primary "></i> Lorem ipsum dolor sit amet.?</h6>
               <p>
                 <strong><u>Absolutely!</u></strong> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas architecto vero odio vel asperiores facilis incidunt veritatis molestiae officiis quibusdam!
               </p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i class="fas fa-pen-alt text-primary"></i> Lorem ipsum dolor sit amet?</h6>
+              <h6 className="mb-3 text-primary"><i className="fas fa-pen-alt text-primary"></i> Lorem ipsum dolor sit amet?</h6>
               <p>
                 <strong><u>Yes, it is possible!</u></strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum asperiores deserunt corrupti dolorem. Dignissimos quae numquam officiis quod consequuntur vitae, a fuga exercitationem ad eius.
               </p>
