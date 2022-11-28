@@ -6,7 +6,7 @@ import { Cart4 } from 'react-bootstrap-icons';
 import CartCard from './CartCard';
 
 
-const Header = ({ cart, deleteItem, checkout }) => {
+const Header = ({ cart, addRemoveQuantity, checkout }) => {
   let quantity = 0;
   let price = 0;
 
@@ -58,7 +58,7 @@ const Header = ({ cart, deleteItem, checkout }) => {
         </div>
         <div className="offcanvas-body border-bottom">
           {
-            cart.map((item, index) => <CartCard key={index} item={item} deleteItem={deleteItem} />)
+            cart.map((item, i) => <CartCard key={i} item={item} addRemoveQuantity={addRemoveQuantity} />)
           }
         </div>
         <div className='row mt-3 mb-3'>
@@ -74,5 +74,5 @@ const Header = ({ cart, deleteItem, checkout }) => {
     </>
   )
 }
-
+ 
 export default Header;

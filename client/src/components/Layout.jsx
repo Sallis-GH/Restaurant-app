@@ -1,36 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import { Outlet } from "react-router-dom";
 import Header from './Header';
+import OrderContext from '../context/OrderContext';
 
 const Layout = () => {
+  const { order } = useContext(OrderContext);
+  console.log(order, "FROM THE LAYOUT");
   const [cart, setCart] = useState([]);
 
-  const addCart = async () => {
-    // mock cart
-    setCart([{ name: 'Magherita', price: 100, currency: "SEK", quantity: 2 }, { name: 'Marinara', price: 80, currency: "SEK", quantity: 1 }, { name: 'Choco Cake', price: 80, currency: "SEK", quantity: 2 }]);
-  };
+  useEffect(()=> {
+    setCart([...order]);
+    return
+  },[order])
 
-  const deleteItem = (event, item) => {
-    const index = cart.findIndex(cart => cart.name === item.name && cart.price === item.price && cart.quantity === item.quantity)
-    const newItem = cart;
-    if (event.target.id === 'add') {
-      newItem[index].quantity += 1;
+  const addRemoveQuantity = (e, item) => {
+    const index = cart.findIndex(product => product.name === item.name && product.price === item.price && product.quantity === item.quantity)
+    const updateCart = [...cart];
+    if (e.target.id === 'add') {
+      updateCart[index].quantity += 1;
     }
-    if (event.target.id === 'delete') {
-      newItem[index].quantity === 1 ? newItem.splice(index, 1) : newItem[index].quantity -= 1;
+ 
+    // delete operation have a BUG
+    if (e.target.id === 'delete') {
+      updateCart[index].quantity === 1 ? updateCart.splice(index, 1) : updateCart[index].quantity -= 1; // delete operation have a BUG
     }
-    console.log(newItem, 'NEW ITEM');
-    setCart([...newItem]);
+
+    console.log(updateCart, 'NEW ITEM');
+    setCart([...updateCart]);
   };
 
   const checkout = () => {
     console.log('checkout');
   }
 
-
   return (
     <>
-      <Header cart={cart} deleteItem={deleteItem} checkout={checkout} />
+      <Header cart={cart} addRemoveQuantity={addRemoveQuantity} checkout={checkout} />
       <Outlet />
     </>
   )
