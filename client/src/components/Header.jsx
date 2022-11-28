@@ -7,7 +7,7 @@ import CartCard from './CartCard';
 import LogoutButton from './LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Header = ({ cart, deleteItem, checkout }) => {
+const Header = ({ cart, addRemoveQuantity, checkout }) => {
   const { isAuthenticated } = useAuth0();
 
   let quantity = 0;
@@ -75,5 +75,5 @@ const Header = ({ cart, deleteItem, checkout }) => {
     </>
   )
 }
- 
+
 export default Header;

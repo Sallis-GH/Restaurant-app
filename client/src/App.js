@@ -18,8 +18,8 @@ function App() {
   return (
     <OrderProvider>
       <Routes>
-          <Route index element={<Home />} />
-          <Route path='/' element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path='/' element={<Layout />}>
           <Route path='about' element={<About />} />
           <Route path='menu' element={<Menu />} />
           <Route path='order' element={<Order />} />
@@ -28,6 +28,7 @@ function App() {
           <Route path='thankyou' element={<ThankYou />} />
           <Route path="business/login" element={<RestaurantLogin />} />
           <Route path="/business/addmenu" element={<AddMenu />} />
+        </Route>
       </Routes>
     </OrderProvider>
   );
