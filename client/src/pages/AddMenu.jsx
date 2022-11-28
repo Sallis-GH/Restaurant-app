@@ -1,12 +1,13 @@
 import '../__style__/AddMenu.css'
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import InputOptionComp from '../components/InputOptionComp'
 import IngredientInput from '../components/IngredientInput'
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
 
 
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
-const	curr = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD',
+const curr = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD',
 	'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTC', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD',
 	'CDF', 'CHF', 'CLF', 'CLP', 'CNY', 'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD',
 	'EEK', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GGP', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ',
@@ -22,6 +23,7 @@ const	curr = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZ
 
 const AddMenu = () => {
 
+<<<
 const [formValues, setFormValues] = useState({});
 const [ingredientsFormValues, setIngredientsFormValues] = useState([]);
 const [toggle, setToggle] = useState(false);
@@ -186,4 +188,6 @@ return (
 
 }
 
-export default AddMenu
+export default withAuthenticationRequired(AddMenu, {
+	onRedirecting: () => (<div>Loading....</div>)
+});

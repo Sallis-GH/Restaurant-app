@@ -4,9 +4,12 @@ import logo from '../images/logo.png'
 import '../__style__/header.css'
 import { Cart4 } from 'react-bootstrap-icons';
 import CartCard from './CartCard';
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
+const Header = ({ cart, deleteItem, checkout }) => {
+  const { isAuthenticated } = useAuth0();
 
-const Header = ({ cart, addRemoveQuantity, checkout }) => {
   let quantity = 0;
   let price = 0;
 
@@ -45,6 +48,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
             {quantity !== 0 && <p className='notification'> {quantity} </p>}
           </div>
+          {isAuthenticated && <LogoutButton />}
         </div>
       </nav>
 
