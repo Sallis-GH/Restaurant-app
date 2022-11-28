@@ -13,13 +13,13 @@ const BusinessOrders = () => {
   }, [])
 
   return (
-    <div className='container'>
+    <div className='container mt-4'>
       <table className="table table-striped">
         <thead>
           <tr>
             <th className="col-8">Order</th>
             <th>Time</th>
-            <th>Client Name</th>
+            <th>Client Name / Ref.</th>
           </tr>
         </thead>
         <tbody>
