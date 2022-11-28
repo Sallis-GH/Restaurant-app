@@ -9,9 +9,6 @@ const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_PUBLISH_KEY
 })
 
-
-
-
 const getMenu = (_, res) => {
   try {
     client.getEntries()
@@ -22,11 +19,12 @@ const getMenu = (_, res) => {
 };
 
 const createDish = (req, res) => {
-  console.log(req.files, 'image');
-  // console.log('dassdsaa');
+  const body = req.body.body;
+  const parsedBody = JSON.parse(body);
+  const { name, price, currency, description, category, ingredients } = parsedBody;
   try {
-    if (req.body.name && req.body.price && req.body.currency && req.body.category) {
-      req.files ? saveItemWithImg(req, res) : saveItem(req, res);
+    if (name && price && currency && category) {
+      req.files ? saveItemWithImg(parsedBody, req.files, res) : saveItem(parsedBody, res);
     };
   } catch ({ _message }) {
     res.status(400).json({ message: _message });

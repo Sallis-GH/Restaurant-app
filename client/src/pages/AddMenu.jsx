@@ -69,10 +69,6 @@ const AddMenu = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const img = new FormData();
-
-		img.append('img', image);
-
 
 		const ingredients = ingredientsFormValues.reduce((res, ing) => {
 			return { ...res, [(ing.label).toLowerCase()]: ing.value }
@@ -80,19 +76,21 @@ const AddMenu = () => {
 
 		const product = {
 			...formValues,
-			img,
 			ingredients: { ...ingredients },
 		}
 		product.ingredients = ingredients
 
-		// axios.post('http://localhost:8080/api/menu/newDish', product)
-		// .then(function (response) {
-		//   console.log(response, 'response');
-		// })
-		// .catch(function (error) {
-		//   console.log(error, 'error');
-		// });
+		let data = new FormData();
+		data.append('file', image);
+		data.append('body', JSON.stringify(product));
 
+		axios.post('http://localhost:8080/api/menu/newDish', data, {
+			headers: {
+				'accept': 'application/json',
+				'Accept-Language': 'en-US,en;q=0.8',
+				'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+			}
+		});
 	};
 
 	return (
@@ -176,7 +174,6 @@ const AddMenu = () => {
 			</form>
 		</div>
 	);
-
 }
 
 export default withAuthenticationRequired(AddMenu, {
