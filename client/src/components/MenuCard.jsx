@@ -12,7 +12,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
 
   if (!image) {
     return (
-      <div className="card w-25 ms-2 mb-2 card-container">
+      <div className="card ms-2 mb-2 card-container">
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
@@ -44,15 +44,15 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
             <h5 className="card-title">{name}</h5>
             <p className="card-text">{description}</p>
             <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
-            <div className='row'>
-              <div className='col-6'>
+            <div className='column'>
+              <div className='col-6 col-md-12 align-content-center'>
                 <button onClick={() => handleGetProductData({ name, price:+price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
               </div>
-              <div className='col-6'>
-                <div className="input-group mb-3">
-                  <button onClick={() => quantity ? setQuantity(quantity - 1) : null} type="button" className="btn btn-outline-success border border-3 border-end-0 border-success ">-</button>
-                  <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success' ref={quantityRef}>{quantity}</span>
-                  <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success ">+</button>
+              <div className='col-6 col-md-10 col-lg-6'>
+                <div className="input-group mb-3 mt-2">
+                  <button onClick={() => quantity ? setQuantity(quantity - 1) : null} type="button" className="btn btn-outline-success border border-3 border-end-0 border-success d-flex w-25 justify-content-center ">-</button>
+                  <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success w-25 justify-content-center' ref={quantityRef}>{quantity}</span>
+                  <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success d-flex w-25 justify-content-center ">+</button>
                 </div>
               </div>
             </div>
