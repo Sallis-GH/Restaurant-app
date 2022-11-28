@@ -84,7 +84,11 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
             {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
-        <Link to='/checkout'><button className='btn btn-success' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button></Link>
+
+        <Link to='/checkout'>
+          <button className='btn btn-success' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button>
+        </Link>
+
       </div>
     </>
   )

@@ -1,49 +1,61 @@
-import { useEffect, useState, useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useContext} from 'react';
 import OrderContext from '../context/OrderContext';
-import { Link } from 'react-router-dom'
 import '../__style__/checkout.css';
 import CheckoutDisplayCard from '../components/CheckoutDisplayCard';
-
-const prod = [{name: 'Misto Fritto', price: 100, currency: 'SEK', quantity: 1}, {name: 'Melanzana in Carrozza', price: 50.6, currency: 'SEK', quantity: 1}, {name: 'Mix olives', price: 40.5, currency: 'SEK', quantity: 1}]
+import axios from 'axios';
 
 const Checkout = () => {
-    const { order , setOrder } = useContext(OrderContext);
-    console.log(order, 'DISPLAY ORFER FROM CHECHKOUT');
+    const navigate = useNavigate();
+    const { order } = useContext(OrderContext);
     const [formValues, setFormValues] = useState({});
     
-  console.log(formValues, "formValues");
-
-    useEffect(()=> {
-      console.log(order, 'useEffect');
-        
-    }, []);
-
     const handleChange = (e) => {
       setFormValues({ ...formValues, [e.target.id]: e.target.value });
     };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+    const submitFinalOrder = {
+      time: new Date().toLocaleDateString(), // 5/12/2020
+      date: new Date().toLocaleTimeString(), // 6:50:21 PM
+      ...formValues,
+      orders: [...order]
+    }
+
+    axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
+      .then(function (response) {
+        console.log(response, 'response');
+        navigate('/thankyou');
+      })
+      .catch(function (error) {
+        console.log(error, 'error');
+      });
+      console.log(submitFinalOrder);
+    }
 
   return (
     <div className="checkout-container px-4 my-4">
     <div className="row g-5">
       <div className="col-md-5 col-lg-4 order-md-last">
         <h4 className="d-flex justify-content-between align-items-center mb-3">
-          <span className="text-primary">Your cart</span>
-          <span className="badge bg-primary rounded-pill">{prod.length}</span>
+          <span className="text-primary">Products in your cart</span>
+          <span className="badge bg-primary rounded-pill">{order.reduce((res, product) => res + product.quantity, 0)}</span>
         </h4>
         <ul className="list-group mb-3">
-          {prod.map((p, i) => <CheckoutDisplayCard key={i} name={p.name} price={p.price} currency={p.currency} quantity={p.quantity}/>)}
+          {order.map((p, i) => <CheckoutDisplayCard key={i} name={p.name} price={p.price} currency={p.currency} quantity={p.quantity}/>)}
           <li className="list-group-item d-flex justify-content-between">
-            <span>Total {prod[0].currency}</span>
-            <strong>{prod.reduce((res, p) => { return res + (p.price + p.quantity)}, 0)} {prod[0].currency}</strong>
+            <span>Total {order[0].currency}</span>
+            <strong>{order.reduce((res, p) => { return res + (p.price + p.quantity)}, 0)} {order[0].currency}</strong>
           </li>
         </ul>
       </div>
 
 
-
       <div className="col-md-7 col-lg-8">
         <h4 className="mb-3">Billing address</h4>
-        <form className="needs-validation" >
+        <form className="needs-validation" onSubmit={handleSubmit}>
           <div className="row g-3">
 
             <div className="col-sm-6">
@@ -142,9 +154,7 @@ const Checkout = () => {
           </div>
 
           <hr className="my-4" />
-          {/* <Link to='/thankyou'> */}
           <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
-          {/* </Link> */}
         </form>
       </div>
     </div>

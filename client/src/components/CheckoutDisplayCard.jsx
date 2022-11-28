@@ -1,5 +1,3 @@
-
-
 const CheckoutDisplayCard = ({name, price, currency, quantity}) => {
   return (
     <li className="list-group-item d-flex justify-content-between lh-sm">
