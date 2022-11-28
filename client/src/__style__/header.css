@@ -8,16 +8,10 @@
 }
 
 .notification {
-  background-color: red;
   position: relative;
-  color: white;
-  font-size: 0.7rem;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  padding: 0 5px;
+  height: 1.3rem;
   top: 9px;
-  left: -23px;
+  left: -32px;
 }
 
 .btn-pad {
