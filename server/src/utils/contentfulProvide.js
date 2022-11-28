@@ -33,13 +33,12 @@ const saveImage = async file => {
 }
 
 const saveItem = (req, res, imageID) => {
-  console.log('we are here');
   return client.getSpace(process.env.CONTENTFUL_SPACE)
     .then(space => space.getEnvironment('master'))
     .then(environment => environment.createEntry('products', {
       fields: {
-        name: { 'en-US': req.body.name },
-        description: { 'en-US': req.body.description },
+        name: { 'en-US': req.name },
+        description: { 'en-US': req.description },
         image: {
           'en-US': {
             "sys": {
@@ -49,11 +48,11 @@ const saveItem = (req, res, imageID) => {
             }
           }
         },
-        price: { 'en-US': +req.body.price },
-        currency: { 'en-US': req.body.currency },
-        category: { 'en-US': req.body.category },
+        price: { 'en-US': +req.price },
+        currency: { 'en-US': req.currency },
+        category: { 'en-US': req.category },
         // ingredients: { 'en-US': JSON.parse(req.body.ingredients) }
-        ingredients: { 'en-US': req.body.ingredients }
+        ingredients: { 'en-US': req.ingredients }
       }
     }))
     .then(async entry => {
@@ -62,8 +61,8 @@ const saveItem = (req, res, imageID) => {
     })
 };
 
-const saveItemWithImg = (req, res) => {
-  saveImage(req.files.image)
+const saveItemWithImg = (req, img, res) => {
+  saveImage(img.file)
     .then((imageID) => saveItem(req, res, imageID));
 };
 
