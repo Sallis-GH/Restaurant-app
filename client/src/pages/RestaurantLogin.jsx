@@ -1,5 +1,6 @@
 import LoginButton from "../components/LoginButton";
-import logo from '../images/logo.png';
+// import logo from '../images/logo.png';
+import logo from '../images/logo.svg';
 import "../__style__/restaurantLogin.css";
 
 const RestaurantLogin = () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../images/logo.png'
+// import logo from '../images/logo.png'
+import logo from '../images/logo.svg'
 import '../__style__/header.css'
 import { Cart4 } from 'react-bootstrap-icons';
 import CartCard from './CartCard';
@@ -23,7 +24,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-lg bg-light sticky-top">
         <div className="container-fluid">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
