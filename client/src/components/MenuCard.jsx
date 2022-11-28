@@ -17,10 +17,10 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
           <h5 className="card-title">{name}</h5>
           <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-6 col-lg-4'>
               <button onClick={() => handleGetProductData({ name, price:+price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
             </div>
-            <div className='col-6'>
+            <div className='col-6 col-lg-4'>
               <div className="input-group mb-3">
                 <button onClick={() => quantity ? setQuantity(quantity - 1) : null} type="button" className="btn btn-outline-success border border-3 border-end-0 border-success ">-</button>
                 <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success quantity-text'ref={quantityRef}>{quantity}</span>
@@ -37,7 +37,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
     <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center">
       <div className="row d-flex">
         <div className="col-md-5 d-flex justify-content-center align-items-center">
-          <img src={image} className="card-image w-75 rounded-5 shadow" alt="..." />
+          <img src={image} className="card-image w-75 rounded-5 shadow mt-3" alt="..." />
         </div>
         <div className="col-md-7">
           <div className="card-body">
