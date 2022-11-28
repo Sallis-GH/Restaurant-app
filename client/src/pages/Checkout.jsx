@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Checkout = () => {
     const navigate = useNavigate();
-    const { order } = useContext(OrderContext);
+    const { order, setOrder } = useContext(OrderContext);
     const [formValues, setFormValues] = useState({});
     
     const handleChange = (e) => {
@@ -28,6 +28,7 @@ const Checkout = () => {
       .then(function (response) {
         console.log(response, 'response');
         navigate('/thankyou');
+        setOrder([])
       })
       .catch(function (error) {
         console.log(error, 'error');
