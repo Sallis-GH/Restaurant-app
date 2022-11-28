@@ -45,7 +45,10 @@ const Menu = () => {
         <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
       </div>
-      <button onClick={topFunction} title="Go to top" className='fs-2 sticky-bottom'>^</button>
+      <div className='position-sticky bottom-0 end-0'>
+        <button onClick={topFunction} title="Go to top" className='btn btn-outline-success fs-2 position-absolute bottom-0 end-0 mx-1
+        mb-1 bg-light'>^</button>
+      </div>
     </main>
   )
 }
