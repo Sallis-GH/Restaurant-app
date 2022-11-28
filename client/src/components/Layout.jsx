@@ -4,7 +4,7 @@ import Header from './Header';
 import OrderContext from '../context/OrderContext';
 
 const Layout = () => {
-  const { order } = useContext(OrderContext);
+  const { order, setOrder } = useContext(OrderContext);
   console.log(order, "FROM THE LAYOUT");
   const [cart, setCart] = useState([]);
 
@@ -27,6 +27,7 @@ const Layout = () => {
 
     console.log(updateCart, 'NEW ITEM');
     setCart([...updateCart]);
+    setOrder([...updateCart])
   };
 
   const checkout = () => {
