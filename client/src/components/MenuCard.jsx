@@ -10,10 +10,6 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
     getProductData(obj);
   }
 
-  //name, price, currency, quantity
-
-  console.log(price);
-
   if (!image) {
     return (
       <div className="card w-25 ms-2 mb-2 card-container">
@@ -27,7 +23,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
             <div className='col-6'>
               <div className="input-group mb-3">
                 <button onClick={() => quantity ? setQuantity(quantity - 1) : null} type="button" className="btn btn-outline-success border border-3 border-end-0 border-success ">-</button>
-                <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success quantity-text'>{quantity}</span>
+                <span className='quantity-text fs-4 border-top border-bottom border-3 px-2 border-success quantity-text'ref={quantityRef}>{quantity}</span>
                 <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success ">+</button>
               </div>
             </div>
@@ -36,8 +32,6 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
       </div>
     )
   }
-
-
 
   return (
     <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center">
