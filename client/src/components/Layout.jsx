@@ -5,7 +5,7 @@ import OrderContext from '../context/OrderContext';
 
 const Layout = () => {
   const { order, setOrder } = useContext(OrderContext);
-  console.log(order, "FROM THE LAYOUT");
+  // console.log(order, "FROM THE LAYOUT");
   const [cart, setCart] = useState([]);
 
   useEffect(()=> {
@@ -25,7 +25,7 @@ const Layout = () => {
       updateCart[index].quantity === 1 ? updateCart.splice(index, 1) : updateCart[index].quantity -= 1; // delete operation have a BUG
     }
 
-    console.log(updateCart, 'NEW ITEM');
+    // console.log(updateCart, 'NEW ITEM');
     setCart([...updateCart]);
     setOrder([...updateCart])
   };

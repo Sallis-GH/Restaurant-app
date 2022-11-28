@@ -12,7 +12,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
 
   if (!image) {
     return (
-      <div className="card ms-2 mb-2 card-container">
+      <div className="card ms-2 mb-2 card-container shadow-sm">
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
@@ -34,7 +34,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
   }
 
   return (
-    <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center">
+    <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center shadow-sm">
       <div className="row d-flex">
         <div className="col-md-5 d-flex justify-content-center align-items-center">
           <img src={image} className="card-image w-75 rounded-5 shadow mt-3" alt="..." />

@@ -20,15 +20,16 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
 
   return (
     <>
+    <header className='sticky-top'>
       <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
+        <div className="container-fluid custom-width">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <Link to='/'>
             <img src={logo} alt="logo" className='header-logo-mobile' />
           </Link>
-          <div className="collapse navbar-collapse pt-2" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse pt-3 pb-3" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <Link to='/'>
@@ -36,10 +37,6 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
           <div className='d-flex align-item-center'>
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
@@ -47,6 +44,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
           </div>
         </div>
       </nav>
+    </header>
 
       <div className="offcanvas offcanvas-end text-center p-4" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div className="offcanvas-header border-bottom">
@@ -66,7 +64,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
             {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
-        <button className='btn btn-success' onClick={checkout} >Go to checkout!</button>
+        <Link to='/checkout'><button className='btn btn-success' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button></Link>
       </div>
     </>
   )
