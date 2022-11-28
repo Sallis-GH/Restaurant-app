@@ -9,10 +9,7 @@ const Menu = () => {
   useEffect(() => {
     fetch('http://localhost:8080/api/menu')
       .then(data => data.json())
-      .then(data => {
-        console.log(data);
-        setMenus(data)
-      })
+      .then(data => setMenus(data))
   }, [])
 
   const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')
@@ -35,15 +32,22 @@ const Menu = () => {
       })
     }
   }
+  const topFunction = () => {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <main>
-      <div className='col-12 '>
+      <div className='col-12'>
         <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
+      </div>
+      <div className='position-sticky bottom-0 end-0'>
+        <button onClick={topFunction} title="Go to top" className='btn btn-outline-success fs-2 position-absolute bottom-0 end-0 mx-1
+        mb-1 bg-light'>^</button>
       </div>
     </main>
   )
