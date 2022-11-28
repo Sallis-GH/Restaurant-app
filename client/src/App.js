@@ -25,7 +25,6 @@ function App() {
           <Route path='menu' element={<Menu />} />
           <Route path='order' element={<Order />} />
           <Route path='checkout' element={<Checkout />} />
-          <Route path='*' element={<NoPage />} />
           <Route path='thankyou' element={<ThankYou />} />
 
           {/* PROTECT ROUTE */}
@@ -33,6 +32,7 @@ function App() {
           <Route path="/business/addmenu" element={<AddMenu />} />
           <Route path="business/orders" element={<BusinessOrders />} />
         </Route>
+          <Route path='*' element={<NoPage />} />
       </Routes>
     </OrderProvider>
   );

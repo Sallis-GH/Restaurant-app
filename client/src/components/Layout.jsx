@@ -24,7 +24,7 @@ const Layout = () => {
       updateCart[index].quantity === 1 ? updateCart.splice(index, 1) : updateCart[index].quantity -= 1; // delete operation have a BUG
     }
 
-    console.log(updateCart, 'NEW ITEM');
+    // console.log(updateCart, 'NEW ITEM');
     setCart([...updateCart]);
     setOrder([...updateCart])
   };
