@@ -46,7 +46,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
           </div>
           <div className='d-flex align-item-center'>
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
-            {quantity !== 0 && <p className='notification'> {quantity} </p>}
+            {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
           </div>
           {isAuthenticated && <LogoutButton />}
         </div>
