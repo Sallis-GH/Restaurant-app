@@ -28,7 +28,6 @@ const AddMenu = () => {
 	const [ingredientsFormValues, setIngredientsFormValues] = useState([]);
 	const [toggle, setToggle] = useState(false);
 	const [image, setImage] = useState(null);
-	console.log(image, "setImage");
 	const inputRef = useRef();
 
 	const handleChange = (e) => {
@@ -36,9 +35,6 @@ const AddMenu = () => {
 	};
 
 	const handleImgChange = (e) => {
-		console.log(e.target.value, 'e.target.value');
-		console.log(e.target.files, 'e.target.files');
-		console.log(e.target.files[0], 'e.target.files[0]');
 		setImage(e.target.files[0])
 	};
 
@@ -76,9 +72,6 @@ const AddMenu = () => {
 
 		img.append('img', image);
 
-		console.log(img, "IMAGE");
-		console.log(image, "IMAGE");
-
 
 		const ingredients = ingredientsFormValues.reduce((res, ing) => {
 			return { ...res, [(ing.label).toLowerCase()]: ing.value }
@@ -90,9 +83,6 @@ const AddMenu = () => {
 			ingredients: { ...ingredients },
 		}
 		product.ingredients = ingredients
-
-		console.log(product, 'product');
-		console.log(ingredients, 'ingredients');
 
 		// axios.post('http://localhost:8080/api/menu/newDish', product)
 		// .then(function (response) {

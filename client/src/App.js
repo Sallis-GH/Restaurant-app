@@ -10,8 +10,9 @@ import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import ThankYou from './pages/Thankyou';
 import RestaurantLogin from './pages/RestaurantLogin';
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
 import { OrderProvider } from './context/OrderContext';
+import BusinessOrders from './pages/BusinessOrders';
 
 function App() {
 
@@ -26,8 +27,11 @@ function App() {
           <Route path='checkout' element={<Checkout />} />
           <Route path='*' element={<NoPage />} />
           <Route path='thankyou' element={<ThankYou />} />
+
+          {/* PROTECT ROUTE */}
           <Route path="business/login" element={<RestaurantLogin />} />
           <Route path="/business/addmenu" element={<AddMenu />} />
+          <Route path="business/orders" element={<BusinessOrders />} />
         </Route>
       </Routes>
     </OrderProvider>

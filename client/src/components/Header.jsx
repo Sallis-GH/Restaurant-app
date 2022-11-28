@@ -38,17 +38,24 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
                   <img src={logo} alt="logo" className='header-logo' />
                 </Link>
               </li>
+              {
+                isAuthenticated &&
+                <>
+                  <li className="nav-item ms-4 mt-1">
+                    <Link to='/business/addmenu' className="nav-link"> Add dish </Link>
+                  </li>
+                  <li className="nav-item ms-4 mt-1">
+                    <Link to='/business/orders' className="nav-link"> Orders </Link>
+                  </li>
+                </>
+              }
             </ul>
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
           <div className='d-flex align-item-center'>
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
             {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
+            {isAuthenticated && <LogoutButton />}
           </div>
-          {isAuthenticated && <LogoutButton />}
         </div>
       </nav>
 
