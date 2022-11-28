@@ -4,13 +4,22 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 
 const BusinessOrders = () => {
-  const [order, setOrder] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/orders')
-      .then(async response => setOrder(response))
+      .then(async response => {
+        setUserInfo(response.data);
+        setOrders(
+          response.data.map(order => order.orders.map(dish => `${dish.quantity} - ${dish.name}`))
+        )
+      })
       .catch(error => console.log(error))
   }, [])
+
+  console.log(orders, 'ORDER');
+  console.log(userInfo, 'userInfo');
 
   return (
     <div className='container mt-4'>
@@ -24,15 +33,19 @@ const BusinessOrders = () => {
         </thead>
         <tbody>
 
-          {/* {
-          orders.map((order, index) => (
-            <tr key={index} >
-              <th>{order.order}</th>
-              <th>{order.time}</th>
-              <th>{order.name}</th>
-            </tr>
-          ))
-        } */}
+          {
+            userInfo?.map((order, index) => (
+              <tr key={index} >
+                <th>
+                  {
+                    orders[index].map((dish, index) => <span key={index} > {dish} <br /> </span>)
+                  }
+                </th>
+                <th>{order.date} <span> <br /> {order.time} </span></th>
+                <th>{order.email} <span> <br /> {order.phone} <br /> </span> {order.address} </th>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>

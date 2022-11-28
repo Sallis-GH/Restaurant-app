@@ -11,14 +11,14 @@ const UserSchema = new Schema({
 const User = model("Users", UserSchema);
 
 const OrderSchema = new Schema({
-	firstName: { type: String,  },
-	lastName: { type: String,  },
-	phone: {type: String, },
-	email: { type: String,  },
-	address: { type: String,  },
-	orders: [{ name: {type: String}, price: {type: Number}, currency: {type: String}, quantity: {type: Number} }],
-	time: {type: String},
-	date: {type: String},
+	firstName: { type: String, },
+	lastName: { type: String, },
+	phone: { type: String, },
+	email: { type: String, },
+	address: { type: String, },
+	orders: [{ name: { type: String }, price: { type: Number }, currency: { type: String }, quantity: { type: Number } }],
+	time: { type: String },
+	date: { type: String },
 	id: { type: String, },
 });
 const Order = model("Orders", OrderSchema);

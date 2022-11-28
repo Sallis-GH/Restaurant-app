@@ -6,11 +6,9 @@ import About from './pages/About';
 import NoPage from './pages/NoPage';
 import Menu from './pages/Menu';
 import AddMenu from './pages/AddMenu';
-import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import ThankYou from './pages/Thankyou';
 import RestaurantLogin from './pages/RestaurantLogin';
-// import PrivateRoute from './components/PrivateRoute';
 import { OrderProvider } from './context/OrderContext';
 import BusinessOrders from './pages/BusinessOrders';
 
@@ -23,7 +21,6 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route path='about' element={<About />} />
           <Route path='menu' element={<Menu />} />
-          <Route path='order' element={<Order />} />
           <Route path='checkout' element={<Checkout />} />
           <Route path='thankyou' element={<ThankYou />} />
 
@@ -32,7 +29,7 @@ function App() {
           <Route path="/business/addmenu" element={<AddMenu />} />
           <Route path="business/orders" element={<BusinessOrders />} />
         </Route>
-          <Route path='*' element={<NoPage />} />
+        <Route path='*' element={<NoPage />} />
       </Routes>
     </OrderProvider>
   );
