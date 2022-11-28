@@ -4,7 +4,8 @@ import mobilebg from '../images/mobilebg.jpg'
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from "react";
 import '../__style__/home.css';
-import Profile from '../components/Profile';
+
+
 const Home = () => {
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
@@ -32,7 +33,6 @@ const Home = () => {
           <button type="button" className="btn btn-outline-dark btn-lg homepage--btn"> About </button>
         </Link>
       </nav>
-      <Profile />
     </>
   )
 }
