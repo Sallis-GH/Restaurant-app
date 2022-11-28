@@ -38,9 +38,6 @@ const Header = ({ cart, deleteItem, checkout }) => {
                   <img src={logo} alt="logo" className='header-logo' />
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="#">Link</Link>
-              </li>
             </ul>
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -62,7 +59,7 @@ const Header = ({ cart, deleteItem, checkout }) => {
         </div>
         <div className="offcanvas-body border-bottom">
           {
-            cart.map((item, index) => <CartCard key={index} item={item} deleteItem={deleteItem} />)
+            cart.map((item, i) => <CartCard key={i} item={item} addRemoveQuantity={addRemoveQuantity} />)
           }
         </div>
         <div className='row mt-3 mb-3'>
@@ -70,7 +67,7 @@ const Header = ({ cart, deleteItem, checkout }) => {
             <h5 className="bold text-start ms-3"> Total (Incl. VAT)</h5>
           </div>
           <div className='col-4'>
-            {cart.length && <h5 className="bold"> {price} {cart[0].currency} </h5>}
+            {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
         <button className='btn btn-success' onClick={checkout} >Go to checkout!</button>
@@ -78,5 +75,5 @@ const Header = ({ cart, deleteItem, checkout }) => {
     </>
   )
 }
-
+ 
 export default Header;

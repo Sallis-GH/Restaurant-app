@@ -18,7 +18,7 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="vh-50 d-flex justify-content-center">
-       {isDesktop ? <img className='about-img' src={aboutImg} alt="" srcset="" /> : <img className='about-img-mobile' src={aboutImgMobile} alt="" srcset="" />}
+       {isDesktop ? <img className='about-img' src={aboutImg} alt="" srcSet="" /> : <img className='about-img-mobile' src={aboutImgMobile} alt="" srcSet="" />}
      </div>
      
      <section className="mx-5 my-5">
@@ -29,51 +29,45 @@ const About = () => {
 
           <div className="row">
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i class="far fa-paper-plane text-primary "></i> Is payment transation safe?</h6>
+              <h6 className="mb-3 text-primary"><i className="far fa-paper-plane text-primary "></i> Lorem ipsum dolor sit amet.?</h6>
               <p>
-                <strong><u>Absolutely!</u></strong> We work with top payment companies which guarantees your
-                safety and
-                security. All billing information is stored on our payment processing partner.
+                <strong><u>Absolutely!</u></strong> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas architecto vero odio vel asperiores facilis incidunt veritatis molestiae officiis quibusdam!
               </p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i class="fas fa-pen-alt text-primary"></i> Is it possible to cancle subscription anytime ?</h6>
+              <h6 className="mb-3 text-primary"><i className="fas fa-pen-alt text-primary"></i> Lorem ipsum dolor sit amet?</h6>
               <p>
-                <strong><u>Yes, it is possible!</u></strong> You can cancel your subscription anytime in your
-                account. Once the subscription is
-                cancelled, you will not be charged next month.
+                <strong><u>Yes, it is possible!</u></strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum asperiores deserunt corrupti dolorem. Dignissimos quae numquam officiis quod consequuntur vitae, a fuga exercitationem ad eius.
               </p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i className="fas fa-user text-primary"></i> Is there any subscription available?
+              <h6 className="mb-3 text-primary"><i className="fas fa-user text-primary"></i> Lorem ipsum dolor sit amet?
               </h6>
               <p>
-                Currently, we only offer monthly subscription. You can upgrade or cancel your monthly
-                account at any time with no further obligation.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vitae voluptate autem, sit enim culpa ipsum quis distinctio. Quia, doloribus.
               </p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i className="fas fa-rocket text-primary"></i> How to change billing information?
+              <h6 className="mb-3 text-primary"><i className="fas fa-rocket text-primary"></i> Lorem, ipsum dolor?
               </h6>
               <p>
-                Yes. Go to the billing section of your dashboard and update your payment information.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ullam.
               </p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i className="fas fa-home text-primary"></i> Do you refund?
+              <h6 className="mb-3 text-primary"><i className="fas fa-home text-primary"></i> Lorem, ipsum dolor.?
               </h6>
-              <p><strong><u>Unfortunately no</u>.</strong> We do not issue full or partial refunds for any
-                reason.</p>
+              <p><strong><u>Lorem, ipsum</u>.</strong> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi dolores quaerat accusamus.</p>
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i className="fas fa-book-open text-primary"></i> Do you offer any free plan?</h6>
+              <h6 className="mb-3 text-primary"><i className="fas fa-book-open text-primary"></i> Lorem ipsum dolor sit?</h6>
               <p>
-                Of course! We’re happy to offer a free plan to anyone who wants to try our service.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic itaque sit aperiam molestias laborum soluta!
               </p>
             </div>
           </div>

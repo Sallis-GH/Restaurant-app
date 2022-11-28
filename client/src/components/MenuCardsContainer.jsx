@@ -1,30 +1,12 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
 import MenuCard from './MenuCard'
 
-const MenuCardContainer = ({ menus, category }) => {
+const MenuCardContainer = ({ menus, category, getProductData}) => {
 
-  const [cart, setCart] = useState([])
-
-  const getProductData = (obj) => {
-    if (obj.quantity < 1) {
-      return;
-    }
-    const newCart = cart
-    const findIndex = newCart.findIndex(item => item.name === obj.name)
-    if (findIndex < 0) {
-      newCart.push(obj)
-    } else {
-      newCart[findIndex].quantity += obj.quantity;
-    }
-    setCart(newCart)
-    console.log(cart);
-  }
 
   return (
     <section className='container'>
-      <div className='row d-flex justify-content-between'>
-        <h1 className='border-bottom text-left'>{category}</h1>
+      <div className='row d-flex  justify-content-center justify-content-md-between'>
+        <h1 className='border-bottom text-left lead fs-1 category-header'>{category}</h1>
         <div className='mt-4'></div>
         {menus?.map((item, index) => (
           <MenuCard key={index}

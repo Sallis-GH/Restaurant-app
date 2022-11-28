@@ -23,7 +23,7 @@ const ThankYou = () => {
                     <h1>Thank You !</h1>
                     <p>Your order is on its way </p>
                     <Link to='/'>
-                    <button class="btn btn-outline-success">Back Home</button>
+                    <button className="btn btn-outline-success">Back Home</button>
                     </Link>
                 </div>
             </div>
