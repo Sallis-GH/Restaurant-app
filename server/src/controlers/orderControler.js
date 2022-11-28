@@ -2,7 +2,6 @@ import { connect, close } from "../../db/db.js";
 import { Order } from "../../db/models.js";
 import { v4 as uuid } from "uuid";
 
-
 const getOrders = async (_, res) => {
   try {
     const allOrders = await connect(() => Order.find({}));
@@ -15,11 +14,19 @@ const getOrders = async (_, res) => {
   }
 };
 
-const createOrder = async ({ body: { address, orders } }, res) => {
+const createOrder = async ({ 
+  body: { address, date, email, firstName, lastName, phone, time, orders } 
+  }, res) => {
   try {
   const crearedOrder = await connect(() => Order.create({
       id: uuid(),
+      firstName,
+      lastName,
+      phone,
+      email,
       address,
+      time,
+      date,
       orders,
     }));
     close();

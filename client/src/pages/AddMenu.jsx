@@ -6,6 +6,7 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
 
 
+
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
 const curr = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD',
 	'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTC', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD',
