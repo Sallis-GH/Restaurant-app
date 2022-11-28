@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+
 
 const BusinessOrders = () => {
   const [order, setOrder] = useState([]);
@@ -10,7 +12,6 @@ const BusinessOrders = () => {
       .catch(error => console.log(error))
   }, [])
 
-  console.log(order, 'porcodio');
   return (
     <div className='container'>
       <table className="table table-striped">
@@ -38,4 +39,6 @@ const BusinessOrders = () => {
   );
 };
 
-export default BusinessOrders;
+export default withAuthenticationRequired(BusinessOrders, {
+  onRedirecting: () => (<div>Loading....</div>)
+});

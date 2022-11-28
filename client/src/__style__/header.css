@@ -20,6 +20,10 @@
   left: -23px;
 }
 
+.btn-pad {
+  height: 10%
+}
+
 @media screen and (min-width: 992px) {
 
   .header-logo-mobile {
