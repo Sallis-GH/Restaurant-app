@@ -5,7 +5,7 @@ const MenuCardContainer = ({ menus, category, getProductData}) => {
 
   return (
     <section className='container'>
-      <div className='row d-flex justify-content-between'>
+      <div className='row d-flex  justify-content-center justify-content-md-between'>
         <h1 className='border-bottom text-left lead fs-1 category-header'>{category}</h1>
         <div className='mt-4'></div>
         {menus?.map((item, index) => (
