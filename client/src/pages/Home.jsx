@@ -1,25 +1,18 @@
 import logo from '../images/logo.png'
-import background from '../images/image.jpg'
-import mobilebg from '../images/mobilebg.jpg'
+// import background from '../images/image.jpg'
+// import mobilebg from '../images/mobilebg.jpg'
 import { Link } from 'react-router-dom'
-import React, { useState, useEffect } from "react";
+import React from "react";
 import '../__style__/home.css';
+import { useAuth0 } from '@auth0/auth0-react';
+
+
 const Home = () => {
+  const { isAuthenticated } = useAuth0();
 
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 650);
-
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 650);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  });
 
   return (
     <>
-      {isDesktop ? <img className='homepage-bg' src={background} alt="" /> : <img className='mobile-homepage-bg' src={mobilebg} alt="" />}
       <figure className='homepage-logo-container pt-3'>
         <img className='homepage-logo mt-5' src={logo} alt="Logo" />
       </figure>
@@ -30,6 +23,17 @@ const Home = () => {
         <Link to='/about' className='d-grid gap-2 col-6 mx-auto w-25 text-decoration-none'>
           <button type="button" className="btn btn-outline-dark btn-lg homepage--btn"> About </button>
         </Link>
+        {
+          isAuthenticated &&
+          <>
+            <Link to='/business/AddMenu' className='d-grid gap-2 col-6 mx-auto w-25 text-decoration-none mt-2'>
+              <button type="button" className="btn btn-outline-dark btn-lg homepage--btn"> Edit Menu </button>
+            </Link>
+            <Link to='/business/orders' className='d-grid gap-2 col-6 mx-auto w-25 text-decoration-none mt-2'>
+              <button type="button" className="btn btn-outline-dark btn-lg homepage--btn"> Orders Page </button>
+            </Link>
+          </>
+        }
       </nav>
     </>
   )

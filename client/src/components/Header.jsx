@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../images/logo.png'
+// import logo from '../images/logo.png'
+import logo from '../images/logo.svg'
 import '../__style__/header.css'
 import { Cart4 } from 'react-bootstrap-icons';
 import CartCard from './CartCard';
-
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Header = ({ cart, addRemoveQuantity, checkout }) => {
+  const { isAuthenticated } = useAuth0();
+
   let quantity = 0;
   let price = 0;
 
@@ -20,6 +24,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
 
   return (
     <>
+
     <header className='sticky-top'>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid custom-width">
@@ -36,11 +41,23 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
                   <img src={logo} alt="logo" className='header-logo' />
                 </Link>
               </li>
+              {
+                isAuthenticated &&
+                <>
+                  <li className="nav-item ms-4 mt-1">
+                    <Link to='/business/addmenu' className="nav-link"> Add dish </Link>
+                  </li>
+                  <li className="nav-item ms-4 mt-1">
+                    <Link to='/business/orders' className="nav-link"> Orders </Link>
+                  </li>
+                </>
+              }
             </ul>
           </div>
           <div className='d-flex align-item-center'>
             <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
-            {quantity !== 0 && <p className='notification'> {quantity} </p>}
+            {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
+            {isAuthenticated && <LogoutButton />}
           </div>
         </div>
       </nav>
@@ -69,5 +86,5 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
     </>
   )
 }
- 
+
 export default Header;
