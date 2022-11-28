@@ -35,9 +35,6 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
                   <img src={logo} alt="logo" className='header-logo' />
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="#">Link</Link>
-              </li>
             </ul>
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -66,7 +63,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
             <h5 className="bold text-start ms-3"> Total (Incl. VAT)</h5>
           </div>
           <div className='col-4'>
-            {cart.length && <h5 className="bold"> {price} {cart[0].currency} </h5>}
+            {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
         <button className='btn btn-success' onClick={checkout} >Go to checkout!</button>
