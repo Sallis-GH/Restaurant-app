@@ -10,25 +10,33 @@ import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import ThankYou from './pages/Thankyou';
 import RestaurantLogin from './pages/RestaurantLogin';
+import PrivateRoute from './components/PrivateRoute';
+// import RequireAuth from './components/PrivateRoute';
 
 function App() {
+
   return (
-    <Routes>
-      <Route index element={<Home />} />
+    <>
+      <Routes>
+        <Route index element={<Home />} />
 
-      <Route path="/business-login/addmenu" element={<AddMenu />} />
 
-      <Route path="/" element={<Layout />}>
-        <Route path="about" element={<About />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="order" element={<Order />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="*" element={<NoPage />} />
-        <Route path="thankyou" element={<ThankYou />} />
-        <Route path="restaurant/login" element={<RestaurantLogin />} />
-      </Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="about" element={<About />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="order" element={<Order />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="*" element={<NoPage />} />
+          <Route path="thankyou" element={<ThankYou />} />
 
-    </Routes>
+          <Route path="business/login" element={<RestaurantLogin />} />
+
+
+          <Route path="/business/addmenu" element={<AddMenu />} />
+
+        </Route>
+      </Routes>
+    </>
   );
 }
 

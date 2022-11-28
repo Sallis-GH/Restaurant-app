@@ -52,7 +52,6 @@ const Header = ({ cart, deleteItem, checkout }) => {
             {quantity !== 0 && <p className='notification'> {quantity} </p>}
           </div>
           {isAuthenticated && <LogoutButton />}
-          <LogoutButton />
         </div>
       </nav>
 
