@@ -29,3 +29,7 @@
   border: 1px solid #d77340;
   color: #d77340;
 }
+
+.min-heigh-body {
+  min-height: 70vh;
+}

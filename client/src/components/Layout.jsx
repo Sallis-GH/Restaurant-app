@@ -37,7 +37,9 @@ const Layout = () => {
   return (
     <>
       <Header cart={cart} addRemoveQuantity={addRemoveQuantity} checkout={checkout} />
-      <Outlet />
+      <div className='min-heigh-body'>
+        <Outlet />
+      </div>
       <Footer />
     </>
   )
