@@ -11,42 +11,16 @@ const UserSchema = new Schema({
 const User = model("Users", UserSchema);
 
 const OrderSchema = new Schema({
-	address: { type: String, required: true, },
-	orders: [String],
+	firstName: { type: String, },
+	lastName: { type: String, },
+	phone: { type: String, },
+	email: { type: String, },
+	address: { type: String, },
+	orders: [{ name: { type: String }, price: { type: Number }, currency: { type: String }, quantity: { type: Number } }],
+	time: { type: String },
+	date: { type: String },
 	id: { type: String, },
 });
 const Order = model("Orders", OrderSchema);
 
-const menuSchema = new Schema({
-	// "id": String,
-	"name": String,
-	"description": String,
-	"price": Number,
-	"currency": String,
-	// "img":
-	// {
-	// 	data: Buffer,
-	// 	contentType: String
-	// },
-});
-
-const Menu = model("Menu", menuSchema);
-
-const imgSchema = new Schema({
-	"id": Number,
-	"file": {
-		"name": String,
-		"data": Buffer,
-		"size": Number,
-		"encoding": String,
-		"tempFilePath": String,
-		"truncated": Boolean,
-		"mimetype": String,
-		"md5": String,
-		"mv": []
-	}
-})
-
-const Img = model("Img", imgSchema)
-
-export { User, Order, Menu, Img };
+export { User, Order };

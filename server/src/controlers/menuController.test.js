@@ -21,8 +21,10 @@ describe('Testing post request to /api/menuRoutes', () => {
     // const res = await request(app).get('/');
     // expect(res.statusCode).toBe(200);
     supertest(app)
-      .post('/api/menuRoutes/newDish')
-      .send(data)
-      .then(() => done())
+      .get('/api/menu')
+      .then(() => {
+        expect(res.statusCode).toBe(200);
+        done();
+      })
   });
 });

@@ -1,0 +1,14 @@
+.width {
+  width: 800px;
+}
+
+.img-width {
+  width: 80%
+}
+
+@media screen and (min-width: 425px) {
+
+  .img-width {
+    width: 60%
+  }
+}

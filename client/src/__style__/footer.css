@@ -1,0 +1,32 @@
+.footer {
+  background-color: rgb(29, 29, 29);
+}
+
+.lightgray {
+  color: lightgray;
+}
+
+.logo-footer {
+  width: 75%;
+  filter: invert(1);
+}
+
+.hover:hover {
+  color: #43a074;
+}
+
+.address {
+  font-size: 0.7rem;
+}
+
+@media screen and (min-width: 992px) {
+
+  .logo-footer {
+    width: 15%;
+  }
+
+  .address {
+    line-height: 0;
+  }
+
+}
