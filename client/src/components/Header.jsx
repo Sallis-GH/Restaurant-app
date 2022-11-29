@@ -26,7 +26,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
     <>
 
       <header className='sticky-top'>
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg custom">
           <div className="container-fluid">
             {
               isAuthenticated &&
@@ -44,27 +44,27 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
                     <img src={logo} alt="logo" className='header-logo' />
                   </Link>
                 </li>
-                <li className="nav-item ms-4 mt-3">
-                  <Link to='/menu' className="nav-link"> Menu </Link>
+                <li className="nav-item ms-4 mt-1">
+                  <Link to='/menu' className="nav-link fw-bold heading-Text"> Menu </Link>
                 </li>
-                <li className="nav-item ms-4 mt-3">
-                  <Link to='/about' className="nav-link"> About Us </Link>
+                <li className="nav-item ms-4 mt-1">
+                  <Link to='/about' className="nav-link fw-bold heading-Text"> About Us </Link>
                 </li>
                 {
                   isAuthenticated &&
                   <>
-                    <li className="nav-item ms-4 mt-3">
-                      <Link to='/business/addmenu' className="nav-link"> Add dish </Link>
+                    <li className="nav-item ms-4 mt-1">
+                      <Link to='/business/addmenu' className="nav-link fw-bold heading-Text"> Add dish </Link>
                     </li>
-                    <li className="nav-item ms-4 mt-3">
-                      <Link to='/business/orders' className="nav-link"> Orders </Link>
+                    <li className="nav-item ms-4 mt-1">
+                      <Link to='/business/orders' className="nav-link fw-bold heading-Text"> Orders </Link>
                     </li>
                   </>
                 }
               </ul>
             </div>
             <div className='d-flex align-item-center'>
-              <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
+              <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 className='text-color' /></button>
               {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
               {isAuthenticated && <LogoutButton />}
             </div>

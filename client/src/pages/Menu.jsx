@@ -46,11 +46,11 @@ const Menu = () => {
         <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
       </div>
       <div className='position-sticky bottom-0 end-0'>
-        <button onClick={topFunction} title="Go to top" className='btn btn-outline-success position-absolute bottom-0 end-0 me-3
+        <button onClick={topFunction} title="Go to top" className='btn btn-count position-absolute bottom-0 end-0 me-3
         mb-3 bg-light pb-0'>^</button>
       </div>
     </main>
   )
 }
 
-export default Menu
+export default Menu;

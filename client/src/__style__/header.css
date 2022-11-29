@@ -1,5 +1,6 @@
 .header-logo {
   display: none;
+  filter: invert(1);
 }
 
 .header-logo-mobile {
@@ -16,6 +17,11 @@
 
 .btn-pad {
   height: 10%
+}
+
+.nav-link,
+.text-color {
+  color: #fef9ec;
 }
 
 @media screen and (min-width: 992px) {
@@ -38,4 +44,20 @@
   .header-logo {
     width: 200px;
   }
+}
+
+.text-blue {
+  color: #263d4b;
+}
+
+.custom {
+  background-color: #263d4b;
+}
+
+.nav-link:hover {
+  color: #d77340;
+}
+
+body {
+  background-color: #fef9ec;
 }

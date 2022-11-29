@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 .category-header {
   text-transform: capitalize;
+}
+
+.heading-Text {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2rem;
+
+}
+
+.paragraph-Text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.custom-border {
+  border-color: #263d4b !important;
+}
+
+.btn-count {
+  color: #263d4b;
+  border: 1px solid #263d4b;
+}
+
+.btn-count:hover {
+  border: 1px solid #d77340;
+  color: #d77340;
 }
