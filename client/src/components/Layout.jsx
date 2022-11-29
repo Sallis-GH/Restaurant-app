@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Outlet } from "react-router-dom";
 import Header from './Header';
 import OrderContext from '../context/OrderContext';
+import Footer from './Footer';
 
 const Layout = () => {
   const { order, setOrder } = useContext(OrderContext);
@@ -37,6 +38,7 @@ const Layout = () => {
     <>
       <Header cart={cart} addRemoveQuantity={addRemoveQuantity} checkout={checkout} />
       <Outlet />
+      <Footer />
     </>
   )
 }
