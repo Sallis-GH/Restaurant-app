@@ -1,9 +1,8 @@
 import LoginButton from "../components/LoginButton";
-// import logo from '../images/logo.png';
 import logo from '../images/logo.svg';
 import "../__style__/restaurantLogin.css";
 
-const RestaurantLogin = () => {
+const BusinessLogin = () => {
   return (
     <div className="d-flex justify-content-center my-5">
       <div className="container border shadow p-1 p-md-5 m-md-5 m-2 rounded-5 d-flex align-items-center flex-column width" >
@@ -14,4 +13,4 @@ const RestaurantLogin = () => {
   );
 }
 
-export default RestaurantLogin;
+export default BusinessLogin;
