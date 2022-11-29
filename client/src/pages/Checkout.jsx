@@ -19,8 +19,8 @@ const Checkout = () => {
       e.preventDefault();
 
       const submitFinalOrder = {
-        time: new Date().toLocaleDateString(), // 5/12/2020
-        date: new Date().toLocaleTimeString(), // 6:50:21 PM
+        date: new Date().toLocaleDateString(), // 5/12/2020
+        time: new Date().toLocaleTimeString(), // 6:50:21 PM
         ...formValues,
         orders: [...order]
       }
