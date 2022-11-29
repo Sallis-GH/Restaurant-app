@@ -18,23 +18,23 @@ const Checkout = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
 
-    const submitFinalOrder = {
-      time: new Date().toLocaleDateString(), // 5/12/2020
-      date: new Date().toLocaleTimeString(), // 6:50:21 PM
-      ...formValues,
-      orders: [...order]
-    }
+      const submitFinalOrder = {
+        time: new Date().toLocaleDateString(), // 5/12/2020
+        date: new Date().toLocaleTimeString(), // 6:50:21 PM
+        ...formValues,
+        orders: [...order]
+      }
 
-    axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
-      .then(function (response) {
-        console.log(response, 'response');
-        navigate('/thankyou');
-        setOrder([])
-      })
-      .catch(function (error) {
-        console.log(error, 'error');
-      });
-      console.log(submitFinalOrder);
+      axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
+        .then(function (response) {
+          console.log(response, 'response');
+          navigate('/thankyou');
+          setOrder([])
+        })
+        .catch(function (error) {
+          console.log(error, 'error');
+        });
+        console.log(submitFinalOrder);
     }
 
   return (
@@ -48,8 +48,8 @@ const Checkout = () => {
         <ul className="list-group mb-3">
           {order.map((p, i) => <CheckoutDisplayCard key={i} name={p.name} price={p.price} currency={p.currency} quantity={p.quantity}/>)}
           <li className="list-group-item d-flex justify-content-between">
-            <span>Total {order[0].currency}</span>
-            <strong>{order.reduce((res, p) => { return res + (p.price + p.quantity)}, 0)} {order[0].currency}</strong>
+            <span>Total {order[0]?.currency}</span>
+            <strong>{order.reduce((res, p) => { return res + (p.price + p.quantity)}, 0)} {order[0]?.currency}</strong>
           </li>
         </ul>
       </div>
@@ -156,11 +156,9 @@ const Checkout = () => {
           </div>
 
           <hr className="my-4" />
-          <Link to='/thankyou'>
-          <Modal />
-          {/* <button onclick={loading} className="w-100 btn btn-primary btn-lg" variant="success" type="submit">Place Order</button> */}
-          </Link>
+          <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
         </form>
+        
       </div>
     </div>
 </div>

@@ -30,13 +30,11 @@ const Layout = () => {
     setOrder([...updateCart])
   };
 
-  const checkout = () => {
-    console.log('checkout');
-  }
+ 
 
   return (
     <>
-      <Header cart={cart} addRemoveQuantity={addRemoveQuantity} checkout={checkout} />
+      <Header cart={cart} addRemoveQuantity={addRemoveQuantity} />
       <Outlet />
       <Footer />
     </>
