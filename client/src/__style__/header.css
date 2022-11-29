@@ -1,9 +1,21 @@
 .header-logo {
   display: none;
 }
+
 .header-logo-mobile {
   display: block;
   width: 6rem;
+}
+
+.notification {
+  position: relative;
+  height: 1.3rem;
+  top: 9px;
+  left: -32px;
+}
+
+.btn-pad {
+  height: 10%
 }
 
 @media screen and (min-width: 992px) {
@@ -14,7 +26,16 @@
 
   .header-logo {
     display: block;
-    width: 20vw;
+    width: 12vw;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .custom-width {
+    max-width: 1440px;
   }
 
+  .header-logo {
+    width: 200px;
+  }
 }
