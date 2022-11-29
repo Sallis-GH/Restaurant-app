@@ -17,8 +17,11 @@ const BusinessOrders = () => {
         )
       })
       .catch(error => console.log(error))
-  }, [])
+  }, []);
 
+  const completeOrder = () => {
+
+  };
 
   // return (
   //   <div className='container mt-4'>
@@ -61,8 +64,8 @@ const BusinessOrders = () => {
                 <div className="col-md-2 image">
                   <img src="https://static.vecteezy.com/system/resources/previews/002/554/006/large_2x/catering-food-service-fast-delivery-logistic-line-style-icon-free-vector.jpg" className="img-fluid rounded-start" alt="..." />
                 </div>
-                <div className="col-md-8">
-                  <div className="card-body">
+                <div className="col-md-9">
+                  <div className="card-body pe-0">
                     <div className="row" >
                       <div className="col-4">
                         <h5 className="card-title">NEW ORDER</h5>
@@ -77,9 +80,9 @@ const BusinessOrders = () => {
                         {order.email} <span> <br /> {order.phone} <br /> </span> {order.address}
                       </div>
                     </div>
-                    <div className="d-flex justify-content-end">
-                      <button className="btn btn-outline-secondary me-3">Decline</button>
-                      <button className="btn btn-outline-success">Complete</button>
+                    <div className="d-flex justify-content-end mt-2">
+                      <button className="btn btn-outline-secondary me-3" onClick={completeOrder} >Decline</button>
+                      <button className="btn btn-outline-success" onClick={completeOrder} >Complete</button>
                     </div>
                   </div>
                 </div>
