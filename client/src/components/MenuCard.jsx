@@ -14,7 +14,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
     return (
       <div className="card ms-2 mb-2 card-container shadow-sm custom-border">
         <div className="card-body">
-          <h5 className="card-title paragraph-Text">{name}</h5>
+          <h5 className="card-title heading-Text">{name}</h5>
           <p className="card-text paragraph-Text"><small className="text-muted">Price: {price.toFixed(2)}{currency}</small></p>
           <div className='row'>
             <div className='col-6 col-lg-4'>
@@ -35,14 +35,14 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
 
   return (
 
-    <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center shadow-sm custom-border">
+    <div className="card card-container mb-3 mb-lg-5 col-12 col-lg-8 ms-2 d-flex justify-content-center shadow-sm custom-border">
       <div className="row d-flex">
         <div className="col-md-5 d-flex justify-content-center align-items-center">
           <img src={image} className="card-image w-75 rounded-5 shadow mt-3" alt={name} />
         </div>
         <div className="col-md-7">
           <div className="card-body">
-            <h5 className="card-title paragraph-Text">{name}</h5>
+            <h5 className="card-title heading-Text">{name}</h5>
             <p className="card-text paragraph-Text">{description}</p>
             <p className="card-text"><small className="text-muted paragraph-Text">Price: {price.toFixed(2)} {currency}</small></p>
             <div className='column'>

@@ -1,8 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-// import logo from '../images/logo.png'
-import logo from '../images/logo.svg'
-import '../__style__/header.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../images/logo.svg';
+import '../__style__/header.css';
 import { Cart4 } from 'react-bootstrap-icons';
 import CartCard from './CartCard';
 import LogoutButton from './LogoutButton';
@@ -24,7 +23,6 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
 
   return (
     <>
-
       <header className='sticky-top'>
         <nav className="navbar navbar-expand-lg custom">
           <div className="container-fluid">
@@ -72,27 +70,27 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
         </nav>
       </header>
 
-      <div className="offcanvas offcanvas-end text-center p-4" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div className="offcanvas-header border-bottom">
-          <h5 className="offcanvas-title" id="offcanvasRightLabel">Your Cart:</h5>
+      <div className="offcanvas offcanvas-end text-center p-4 bg-custom" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div className="offcanvas-header border-bottom border-dark">
+          <h5 className="offcanvas-title text-blue" id="offcanvasRightLabel">Your Cart:</h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div className="offcanvas-body border-bottom">
+        <div className="offcanvas-body border-bottom border-dark">
           {
             cart.map((item, i) => <CartCard key={i} item={item} addRemoveQuantity={addRemoveQuantity} />)
           }
         </div>
         <div className='row mt-3 mb-3'>
-          <div className='col-8'>
-            <h5 className="bold text-start ms-3"> Total (Incl. VAT)</h5>
+          <div className='col-7'>
+            <h5 className="bold text-start ms-3 text-blue"> Total (Incl. VAT)</h5>
           </div>
-          <div className='col-4'>
+          <div className='col-5'>
             {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
 
         <Link to='/checkout'>
-          <button className='btn btn-success' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button>
+          <button className='btn btn-cart' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button>
         </Link>
 
       </div>
