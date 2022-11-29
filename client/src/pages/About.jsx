@@ -38,7 +38,7 @@ const About = () => {
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
-              <h6 className="mb-3 text-primary"><i class="fas fa-pen-alt text-primary"></i> Is it possible to cancle subscription anytime ?</h6>
+              <h6 className="mb-3 text-primary"><i class="fas fa-pen-alt text-primary"></i> Is it possible to cancel subscription anytime ?</h6>
               <p>
                 <strong><u>Yes, it is possible!</u></strong> You can cancel your subscription anytime in your
                 account. Once the subscription is
