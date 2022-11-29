@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import logo from '../images/logo.png'
 import logo from '../images/logo.svg'
 import '../__style__/header.css'
@@ -8,23 +7,24 @@ import CartCard from './CartCard';
 import LogoutButton from './LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Header = ({ cart, addRemoveQuantity, checkout }) => {
+const Header = ({ cart, addRemoveQuantity}) => {
   const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   let quantity = 0;
   let price = 0;
 
   if (cart.length) {
-    quantity = cart.reduce((acc, item) => acc + item.quantity, 0)
+    quantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+    price = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
   }
 
-  if (cart.length) {
-    price = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+  const onCheckout = () => {
+    navigate('/checkout')
   }
 
   return (
     <>
-
       <header className='sticky-top'>
         <nav className="navbar navbar-expand-lg bg-light">
           <div className="container-fluid">
@@ -90,11 +90,7 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
             {cart.length && <h5 className="bold"> {price.toFixed(2)} {cart[0].currency} </h5>}
           </div>
         </div>
-
-        <Link to='/checkout'>
-          <button className='btn btn-success' data-bs-dismiss="offcanvas" onClick={checkout} >Go to checkout!</button>
-        </Link>
-
+          <button className={`btn ${cart.length < 1 ? "disabled btn-secondary " : ' btn-success ' }`} data-bs-dismiss="offcanvas" onClick={onCheckout} >Go to checkout!</button>
       </div>
     </>
   )
