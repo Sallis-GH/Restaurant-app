@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import Modal from '../components/Modal';
 import { useState, useContext} from 'react';
 import OrderContext from '../context/OrderContext';
 import '../__style__/checkout.css';
@@ -155,7 +156,10 @@ const Checkout = () => {
           </div>
 
           <hr className="my-4" />
-          <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
+          <Link to='/thankyou'>
+          <Modal />
+          {/* <button onclick={loading} className="w-100 btn btn-primary btn-lg" variant="success" type="submit">Place Order</button> */}
+          </Link>
         </form>
       </div>
     </div>

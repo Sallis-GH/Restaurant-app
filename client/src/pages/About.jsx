@@ -36,6 +36,7 @@ const About = () => {
             </div>
 
             <div className="col-md-6 col-lg-4 mb-4">
+
               <h6 className="mb-3 text-primary"><i className="fas fa-pen-alt text-primary"></i> Lorem ipsum dolor sit amet?</h6>
               <p>
                 <strong><u>Yes, it is possible!</u></strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum asperiores deserunt corrupti dolorem. Dignissimos quae numquam officiis quod consequuntur vitae, a fuga exercitationem ad eius.

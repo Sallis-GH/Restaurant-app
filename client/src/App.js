@@ -29,7 +29,7 @@ function App() {
           <Route path="/business/addmenu" element={<AddMenu />} />
           <Route path="business/orders" element={<BusinessOrders />} />
         </Route>
-        <Route path='*' element={<NoPage />} />
+        <Route path='*' element={<NoPage />} />d
       </Routes>
     </OrderProvider>
   );
