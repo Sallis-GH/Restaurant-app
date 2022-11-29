@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from 'react'
 import MenuCardsContainer from '../components/MenuCardsContainer';
 import OrderContext from '../context/OrderContext';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
+console.log(process.env.REACT_APP_BASE_URL)
 
 const Menu = () => {
   const { order, setOrder } = useContext(OrderContext);
   const [menus, setMenus] = useState();
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/menu')
+    fetch(`${url}/api/menu`)
       .then(data => data.json())
       .then(data => setMenus(data))
   }, [])
