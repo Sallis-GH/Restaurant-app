@@ -25,46 +25,52 @@ const Header = ({ cart, addRemoveQuantity, checkout }) => {
   return (
     <>
 
-    <header className='sticky-top'>
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          {
-            isAuthenticated &&
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-          }
-          <Link to='/'>
-            <img src={logo} alt="logo" className='header-logo-mobile' />
-          </Link>
-          <div className="collapse navbar-collapse pt-3 pb-3" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-              <li className="nav-item">
-                <Link to='/'>
-                  <img src={logo} alt="logo" className='header-logo' />
-                </Link>
-              </li>
-              {
-                isAuthenticated &&
-                <>
-                  <li className="nav-item ms-4 mt-1">
-                    <Link to='/business/addmenu' className="nav-link"> Add dish </Link>
-                  </li>
-                  <li className="nav-item ms-4 mt-1">
-                    <Link to='/business/orders' className="nav-link"> Orders </Link>
-                  </li>
-                </>
-              }
-            </ul>
+      <header className='sticky-top'>
+        <nav className="navbar navbar-expand-lg bg-light">
+          <div className="container-fluid">
+            {
+              isAuthenticated &&
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            }
+            <Link to='/'>
+              <img src={logo} alt="logo" className='header-logo-mobile' />
+            </Link>
+            <div className="collapse navbar-collapse pt-3 pb-3" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li className="nav-item">
+                  <Link to='/'>
+                    <img src={logo} alt="logo" className='header-logo' />
+                  </Link>
+                </li>
+                <li className="nav-item ms-4 mt-3">
+                  <Link to='/menu' className="nav-link"> Menu </Link>
+                </li>
+                <li className="nav-item ms-4 mt-3">
+                  <Link to='/about' className="nav-link"> About Us </Link>
+                </li>
+                {
+                  isAuthenticated &&
+                  <>
+                    <li className="nav-item ms-4 mt-3">
+                      <Link to='/business/addmenu' className="nav-link"> Add dish </Link>
+                    </li>
+                    <li className="nav-item ms-4 mt-3">
+                      <Link to='/business/orders' className="nav-link"> Orders </Link>
+                    </li>
+                  </>
+                }
+              </ul>
+            </div>
+            <div className='d-flex align-item-center'>
+              <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
+              {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
+              {isAuthenticated && <LogoutButton />}
+            </div>
           </div>
-          <div className='d-flex align-item-center'>
-            <button className="btn fs-2 mb-2 mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><Cart4 /></button>
-            {quantity !== 0 && <p className='notification badge bg-danger rounded-pill'> {quantity} </p>}
-            {isAuthenticated && <LogoutButton />}
-          </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
 
       <div className="offcanvas offcanvas-end text-center p-4" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div className="offcanvas-header border-bottom">
