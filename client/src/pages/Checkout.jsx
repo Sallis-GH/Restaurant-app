@@ -12,7 +12,9 @@ const Checkout = () => {
     const [formValues, setFormValues] = useState({});
     const [paymentValues, setPaymentValues] = useState({});
     const [allowedToPay, setAllowedToPay] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(false);
     const approvePayment = Object.keys(paymentValues);
+    const isMissing = approvePayment.find(prop => paymentValues[prop].length < 2)
     
     const handleChange = (e) => {
       setFormValues({ ...formValues, [e.target.id]: e.target.value });
@@ -21,6 +23,8 @@ const Checkout = () => {
     const handlePaymentChange = (e) => {
       setPaymentValues({ ...paymentValues, [e.target.id]: e.target.value });
       if (approvePayment.length === 4) {setAllowedToPay(true)};
+      if (isMissing) {setAllowedToPay(false)};
+      setErrorMsg(false)
     };
 
     const handleSubmit = (e) => {
@@ -45,7 +49,9 @@ const Checkout = () => {
             console.log('ERRRROOORROROR OCURED!');
           });
           console.log(submitFinalOrder);
-      }  
+      }  else {
+        setErrorMsg(true)
+      }
     }
 
   return (
@@ -168,6 +174,7 @@ const Checkout = () => {
 
           <hr className="my-4" />
           <button className={`w-100 btn btn-lg ${!allowedToPay ? 'btn-secondary disabled' : 'btn-primary'}`} type="submit">Place Order</button>
+          {errorMsg ? <p>Please make sure all fields are filled in correctly</p> : ''}
         </form>
         
       </div>
