@@ -8,9 +8,9 @@ import Menu from './pages/Menu';
 import AddMenu from './pages/AddMenu';
 import Checkout from './pages/Checkout';
 import ThankYou from './pages/Thankyou';
-import RestaurantLogin from './pages/RestaurantLogin';
 import { OrderProvider } from './context/OrderContext';
 import BusinessOrders from './pages/BusinessOrders';
+import BusinessLogin from './pages/BusinessLogin';
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
           <Route path='thankyou' element={<ThankYou />} />
 
           {/* PROTECT ROUTE */}
-          <Route path="business/login" element={<RestaurantLogin />} />
+          <Route path="business/login" element={<BusinessLogin />} />
           <Route path="/business/addmenu" element={<AddMenu />} />
           <Route path="business/orders" element={<BusinessOrders />} />
         </Route>

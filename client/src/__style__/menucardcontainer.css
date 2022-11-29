@@ -4,16 +4,17 @@
 }
 
 .add-to-cart--btn {
-  color:black;
+  color: black;
   border: black solid;
 }
+
 .add-to-cart--btn:hover {
   background-color: rgb(40, 40, 40);
 }
 
 .quantity-text {
-    min-width: 42px;
-    text-align: center;
+  min-width: 42px;
+  text-align: center;
 }
 
 
@@ -22,9 +23,11 @@
     width: 10rem;
     height: 10rem;
   }
+
   .card-inside-container {
     height: 100%;
   }
+
   .card-container {
     max-width: 48%;
     padding: 0;

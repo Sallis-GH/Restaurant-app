@@ -1,12 +1,11 @@
 import MenuCard from './MenuCard'
 
-const MenuCardContainer = ({ menus, category, getProductData}) => {
-
+const MenuCardContainer = ({ menus, category, getProductData }) => {
 
   return (
     <section className='container'>
       <div className='row d-flex justify-content-center justify-content-md-between'>
-        <h1 className='border-bottom text-left lead fs-1 category-header'>{category}</h1>
+        <h1 className='border-bottom text-left lead fs-2 category-header fw-bold mt-5'>{category}</h1>
         <div className='mt-4'></div>
         {menus?.map((item, index) => (
           <MenuCard key={index}
