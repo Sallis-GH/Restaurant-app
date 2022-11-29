@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Modal from '../components/Modal';
-import { useState, useContext} from 'react';
+import { useState, useContext } from 'react';
 import OrderContext from '../context/OrderContext';
 import '../__style__/checkout.css';
 import CheckoutDisplayCard from '../components/CheckoutDisplayCard';
@@ -27,9 +27,12 @@ const Checkout = () => {
       setErrorMsg(false)
     };
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.id]: e.target.value });
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
       const submitFinalOrder = {
         date: new Date().toLocaleDateString(), // 5/12/2020
         time: new Date().toLocaleTimeString(), // 6:50:21 PM
@@ -83,8 +86,6 @@ const Checkout = () => {
               <div className="invalid-feedback">
                 Valid first name is required.
               </div>
-            </div>
-
             <div className="col-sm-6">
               <label htmlFor="lastName" className="form-label">Last name</label>
               <input type="text" className="form-control" id="lastName"  onChange={handleChange} placeholder=""  required />
@@ -107,7 +108,6 @@ const Checkout = () => {
               <div className="invalid-feedback">
                 Please enter a valid email address.
               </div>
-            </div>
 
             <div className="col-12">
               <label htmlFor="address" className="form-label">Address</label>
@@ -116,11 +116,10 @@ const Checkout = () => {
                 Please enter your address.
               </div>
             </div>
-          </div>
 
-          <hr className="my-4" />
+            <hr className="my-4" />
 
-          <h4 className="mb-3">Payment</h4>
+            <h4 className="mb-3 text-blue">Payment</h4>
 
           <div className="my-3" name="paymentMethod" >
             <div className="form-check">
@@ -153,7 +152,6 @@ const Checkout = () => {
               <div className="invalid-feedback">
                 Credit card number is required
               </div>
-            </div>
 
             <div className="col-md-3">
               <label htmlFor="cc-expiration" className="form-label">Expiration</label>
@@ -161,7 +159,6 @@ const Checkout = () => {
               <div className="invalid-feedback">
                 Expiration date required
               </div>
-            </div>
 
             <div className="col-md-3">
               <label htmlFor="cc-cvv" className="form-label">CVV</label>
@@ -179,8 +176,7 @@ const Checkout = () => {
         
       </div>
     </div>
-</div>
   )
 }
 
-export default Checkout
+export default Checkout;

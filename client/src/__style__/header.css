@@ -1,10 +1,12 @@
 .header-logo {
   display: none;
+  filter: invert(1);
 }
 
 .header-logo-mobile {
   display: block;
   width: 6rem;
+  filter: invert(1);
 }
 
 .notification {
@@ -17,6 +19,35 @@
 .btn-pad {
   height: 10%
 }
+
+.nav-link,
+.text-color {
+  color: #fef9ec;
+}
+
+.text-blue {
+  color: #263d4b;
+}
+
+.custom {
+  background-color: #263d4b;
+}
+
+.nav-link:hover {
+  color: #d77340;
+}
+
+.btn-cart {
+  background-color: #263d4b;
+  color: #fef9ec;
+}
+
+.btn-cart:hover {
+  color: #263d4b;
+  background-color: #fef9ec;
+  border: 1px solid #263d4b;
+}
+
 
 @media screen and (min-width: 992px) {
 

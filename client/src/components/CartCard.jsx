@@ -7,8 +7,8 @@ const CartCard = ({ item, addRemoveQuantity }) => {
     <div className="card shadow p-3 pb-1 mb-3 rounded">
       <div className="row">
         <div className="col-8 text-start">
-          <h5 className="card-title text-success">{item.name}</h5>
-          <p className="card-title">{item.price.toFixed(2)} {item.currency}</p>
+          <h5 className="card-title txt-orange">{item.name}</h5>
+          <p className="card-title text-blue">{item.price.toFixed(2)} {item.currency}</p>
         </div>
         <div className="col-4 d-flex justify-content-end align-items-center ctm-border">
           <button className="del-item-cart pb-2" id="delete" onClick={e => addRemoveQuantity(e, item)}> {item.quantity === 1 ? <Trash3 className="fs-6" id='delete' /> : '-'} </button>

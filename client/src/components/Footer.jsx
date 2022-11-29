@@ -23,9 +23,9 @@ const Footer = () => {
           <div className="col d-md-inline-flex">
             <p className="mt-2 fs-6 me-md-3">&#169; ADMS kitchen</p>
             <div className=" d-flex align-items-center mb-3 mt-md-2">
-              <Instagram className="me-3" />
-              <Facebook className="me-3" />
-              <Whatsapp />
+              <Instagram className="me-3 icon" />
+              <Facebook className="me-3 icon" />
+              <Whatsapp className="icon" />
             </div>
           </div>
           <div className="col d-flex flex-column flex-md-row justify-content-end mb-2">
