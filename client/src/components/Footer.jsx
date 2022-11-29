@@ -20,9 +20,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col">
-            <p className="mt-2 fs-6">&#169; ADMS kitchen</p>
-            <div className=" d-flex align-items-center mb-3">
+          <div className="col d-md-inline-flex">
+            <p className="mt-2 fs-6 me-md-3">&#169; ADMS kitchen</p>
+            <div className=" d-flex align-items-center mb-3 mt-md-2">
               <Instagram className="me-3" />
               <Facebook className="me-3" />
               <Whatsapp />

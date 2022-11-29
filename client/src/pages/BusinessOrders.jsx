@@ -59,7 +59,6 @@ const BusinessOrders = () => {
   //   </div>
   // );
 
-  // <div className="card mb-3" style="max-width: 540px;">
   return (
     <div className="container">
       <div className="row">
