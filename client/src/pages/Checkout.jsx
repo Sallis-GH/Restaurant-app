@@ -10,9 +10,17 @@ const Checkout = () => {
     const navigate = useNavigate();
     const { order, setOrder } = useContext(OrderContext);
     const [formValues, setFormValues] = useState({});
+    const [paymentValues, setPaymentValues] = useState({});
+    const [allowedToPay, setAllowedToPay] = useState(false);
+    const approvePayment = Object.keys(paymentValues);
     
     const handleChange = (e) => {
       setFormValues({ ...formValues, [e.target.id]: e.target.value });
+    };
+    
+    const handlePaymentChange = (e) => {
+      setPaymentValues({ ...paymentValues, [e.target.id]: e.target.value });
+      if (approvePayment.length === 4) {setAllowedToPay(true)};
     };
 
     const handleSubmit = (e) => {
@@ -24,17 +32,20 @@ const Checkout = () => {
         ...formValues,
         orders: [...order]
       }
-
-      axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
-        .then(function (response) {
-          console.log(response, 'response');
-          navigate('/thankyou');
-          setOrder([])
-        })
-        .catch(function (error) {
-          console.log(error, 'error');
-        });
-        console.log(submitFinalOrder);
+      if (approvePayment.length === 4) {
+        axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
+          .then(function (response) {
+            console.log(response, 'response');
+            navigate('/thankyou');
+            setOrder([])
+            setAllowedToPay(false);
+          })
+          .catch(function (error) {
+            console.log(error, 'error');
+            console.log('ERRRROOORROROR OCURED!');
+          });
+          console.log(submitFinalOrder);
+      }  
     }
 
   return (
@@ -62,7 +73,7 @@ const Checkout = () => {
 
             <div className="col-sm-6">
               <label htmlFor="firstName" className="form-label">First name</label>
-              <input type="text" className="form-control" id="firstName" onChange={handleChange} placeholder=""  required=""/>
+              <input type="text" className="form-control" id="firstName" onChange={handleChange} placeholder=""  required/>
               <div className="invalid-feedback">
                 Valid first name is required.
               </div>
@@ -70,7 +81,7 @@ const Checkout = () => {
 
             <div className="col-sm-6">
               <label htmlFor="lastName" className="form-label">Last name</label>
-              <input type="text" className="form-control" id="lastName"  onChange={handleChange} placeholder=""  required="" />
+              <input type="text" className="form-control" id="lastName"  onChange={handleChange} placeholder=""  required />
               <div className="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -78,7 +89,7 @@ const Checkout = () => {
             
             <div className="col-sm-6">
               <label htmlFor="phone" className="form-label">Phone Number</label>
-              <input type="tel" className="form-control" id="phone"  onChange={handleChange} placeholder="Ex: 071-234-5678"  required="" />
+              <input type="tel" className="form-control" id="phone"  onChange={handleChange} placeholder="Ex: 071-234-5678"  required />
               <div className="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -86,7 +97,7 @@ const Checkout = () => {
         
             <div className="col-12">
               <label htmlFor="email" className="form-label">Email </label>
-              <input type="email" className="form-control" id="email" onChange={handleChange} placeholder="you@example.com" required=""/>
+              <input type="email" className="form-control" id="email" onChange={handleChange} placeholder="you@example.com" required/>
               <div className="invalid-feedback">
                 Please enter a valid email address.
               </div>
@@ -94,7 +105,7 @@ const Checkout = () => {
 
             <div className="col-12">
               <label htmlFor="address" className="form-label">Address</label>
-              <input type="text" className="form-control" id="address" onChange={handleChange} placeholder="1234 Main St" required="" />
+              <input type="text" className="form-control" id="address" onChange={handleChange} placeholder="1234 Main St" required />
               <div className="invalid-feedback">
                 Please enter your address.
               </div>
@@ -105,9 +116,9 @@ const Checkout = () => {
 
           <h4 className="mb-3">Payment</h4>
 
-          <div className="my-3">
+          <div className="my-3" name="paymentMethod" >
             <div className="form-check">
-              <input id="credit" name="paymentMethod" type="radio" className="form-check-input"  required="" />
+              <input id="credit" name="paymentMethod" type="radio" className="form-check-input"  required="" defaultChecked/>
               <label className="form-check-label" htmlFor="credit">Credit card</label>
             </div>
             <div className="form-check">
@@ -123,7 +134,7 @@ const Checkout = () => {
           <div className="row gy-3">
             <div className="col-md-6">
               <label htmlFor="cc-name" className="form-label">Name on card</label>
-              <input type="text" className="form-control" id="cc-name" placeholder="" required="" />
+              <input type="text" className="form-control" id="cc-name" placeholder="" required="" onChange={handlePaymentChange}/>
               <small className="text-muted">Full name as displayed on card</small>
               <div className="invalid-feedback">
                 Name on card is required
@@ -132,7 +143,7 @@ const Checkout = () => {
 
             <div className="col-md-6">
               <label htmlFor="cc-number" className="form-label">Credit card number</label>
-              <input type="text" className="form-control" id="cc-number" placeholder="" required=""/>
+              <input type="text" className="form-control" id="cc-number" placeholder="" required="" onChange={handlePaymentChange}/>
               <div className="invalid-feedback">
                 Credit card number is required
               </div>
@@ -140,7 +151,7 @@ const Checkout = () => {
 
             <div className="col-md-3">
               <label htmlFor="cc-expiration" className="form-label">Expiration</label>
-              <input type="text" className="form-control" id="cc-expiration" placeholder="" required="" />
+              <input type="text" className="form-control" id="cc-expiration" placeholder="" required="" onChange={handlePaymentChange}/>
               <div className="invalid-feedback">
                 Expiration date required
               </div>
@@ -148,7 +159,7 @@ const Checkout = () => {
 
             <div className="col-md-3">
               <label htmlFor="cc-cvv" className="form-label">CVV</label>
-              <input type="text" className="form-control" id="cc-cvv" placeholder="" required="" />
+              <input type="text" className="form-control" id="cc-cvv" placeholder="" required="" onChange={handlePaymentChange}/>
               <div className="invalid-feedback">
                 Security code required
               </div>
@@ -156,7 +167,7 @@ const Checkout = () => {
           </div>
 
           <hr className="my-4" />
-          <button className="w-100 btn btn-primary btn-lg" type="submit">Place Order</button>
+          <button className={`w-100 btn btn-lg ${!allowedToPay ? 'btn-secondary disabled' : 'btn-primary'}`} type="submit">Place Order</button>
         </form>
         
       </div>
