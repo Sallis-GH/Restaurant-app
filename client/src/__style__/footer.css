@@ -11,12 +11,13 @@
   filter: invert(1);
 }
 
-.hover:hover {
-  color: #43a074;
-}
-
 .address {
   font-size: 0.7rem;
+}
+
+.icon:hover,
+.hover:hover {
+  color: #d77340;
 }
 
 @media screen and (min-width: 992px) {
