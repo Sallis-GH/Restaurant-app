@@ -6,7 +6,6 @@ const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 
 const MenuCard = ({ name, description, image, price, currency, getProductData, id ,isAddMenu }) => {
-  // console.log(id);
 
   const quantityRef = useRef(0);
   const [quantity, setQuantity] = useState(0)
@@ -34,7 +33,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
     return (
       <div className="card ms-2 mb-2 card-container shadow-sm custom-border">
         {!isAddMenu ? '' : 
-              <div className=' position-absolute end-0 bg-light'>
+              <div className=' position-absolute bottom-0 end-0 bg-transparent'>
                 <button title="Delete" className='btn bg-white' onClick={onDelete}>❌</button>
               </div>}
         <div className="card-body">
@@ -66,7 +65,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
         </div>
         <div className="col-md-7 position-relative">
             {!isAddMenu ? '' : 
-              <div className=' position-absolute end-0 bg-light'>
+              <div className=' position-absolute bottom-0 end-0 bg-transparent'>
                 <button title="Delete" className='btn bg-white' onClick={onDelete}>❌</button>
               </div>}
           <div className="card-body">

@@ -31,7 +31,7 @@ const AddMenu = () => {
 	const [toggle, setToggle] = useState(false);
 	const [image, setImage] = useState(null);
 	const inputRef = useRef();
-
+console.log(formValues);
 	const handleChange = (e) => {
 		setFormValues({ ...formValues, [e.target.id]: e.target.value });
 		console.log(formValues);
@@ -93,6 +93,10 @@ const AddMenu = () => {
 				'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
 			}
 		});
+		setFormValues({});
+		setIngredientsFormValues([]);
+		setImage(null);
+		console.log("I have submited");
 	};
 	
 	return (
@@ -134,7 +138,7 @@ const AddMenu = () => {
 
 					<div className="mb-3">
 						<label className="form-label" htmlFor="description">Description</label>
-						<textarea className="form-control" id='description' onChange={handleChange}></textarea>
+						<textarea className="form-control" id='description' value={formValues.description || ""} onChange={handleChange}></textarea>
 					</div>
 
 					<div className="mb-3">

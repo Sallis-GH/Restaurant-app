@@ -65,7 +65,7 @@ const Checkout = () => {
             {order.map((p, i) => <CheckoutDisplayCard key={i} name={p.name} price={p.price} currency={p.currency} quantity={p.quantity} />)}
             <li className="list-group-item d-flex justify-content-between">
               <span>Total {order[0]?.currency}</span>
-              <strong>{order.reduce((res, p) => { return res + (p.price + p.quantity) }, 0)} {order[0]?.currency}</strong>
+              <strong>{order.reduce((res, p) => { return res + (p.price * p.quantity) }, 0)} {order[0]?.currency}</strong>
             </li>
           </ul>
         </div>
