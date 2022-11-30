@@ -38,9 +38,9 @@ const Menu = () => {
     window.scrollTo(0, 0)
   }
 
-  return (
-    <main>
-      <div className='col-12'>
+  return menus && (
+    <main className='mb-3'>
+      <div className='col-12 container'>
         <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} />
         <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} />
@@ -48,11 +48,11 @@ const Menu = () => {
         <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
       </div>
       <div className='position-sticky bottom-0 end-0'>
-        <button onClick={topFunction} title="Go to top" className='btn btn-outline-success fs-2 position-absolute bottom-0 end-0 mx-1
-        mb-1 bg-light'>^</button>
+        <button onClick={topFunction} title="Go to top" className='btn btn-count position-absolute bottom-0 end-0 me-3
+        mb-3 bg-light pb-0'>^</button>
       </div>
     </main>
   )
 }
 
-export default Menu
+export default Menu;

@@ -7,10 +7,10 @@ import '../__style__/loading.css';
 
 const Loading = () => {
     return (
-<>
-<img className="loadingGif" src={loadingGif} alt="my-gif" /> 
-</>
+        <>
+            <img className="loadingGif" src={loadingGif} alt="my-gif" />
+        </>
     );
-    }
-  
-  export default Loading;
+}
+
+export default Loading;

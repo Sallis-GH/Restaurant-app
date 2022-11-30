@@ -30,14 +30,14 @@ const Layout = () => {
     setOrder([...updateCart])
   };
 
-  const checkout = () => {
-    console.log('checkout');
-  }
+
 
   return (
     <>
-      <Header cart={cart} addRemoveQuantity={addRemoveQuantity} checkout={checkout} />
-      <Outlet />
+      <Header cart={cart} addRemoveQuantity={addRemoveQuantity} />
+      <div className='min-heigh-body'>
+        <Outlet />
+      </div>
       <Footer />
     </>
   )

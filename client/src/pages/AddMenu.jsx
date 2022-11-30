@@ -1,10 +1,9 @@
 import '../__style__/AddMenu.css'
 import { useState, useRef } from 'react'
-import InputOptionComp from '../components/InputOptionComp'
+import Select from '../components/Select'
 import IngredientInput from '../components/IngredientInput'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
-
 
 
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
@@ -80,6 +79,8 @@ const AddMenu = () => {
 		}
 		product.ingredients = ingredients
 
+		console.log(product, 'PLEASE SHOW ME THE ERROR');
+
 		let data = new FormData();
 		data.append('file', image);
 		data.append('body', JSON.stringify(product));
@@ -111,9 +112,7 @@ const AddMenu = () => {
 
 				<div className="mb-3">
 					<label className="form-label" htmlFor="category">Category</label>
-					<select id="category" className="form-select" onChange={handleChange}>
-						{categories.map((category, i) => <InputOptionComp key={i} value={category} />)}
-					</select>
+					<Select onChange={handleChange} value={categories} />
 				</div>
 
 				<div className="mb-3">
@@ -128,9 +127,7 @@ const AddMenu = () => {
 
 				<div className="mb-3">
 					<label className="form-label" htmlFor="currency">Currency</label>
-					<select id="currency" className="form-select" onChange={handleChange}>
-						{curr.map((currency, i) => <InputOptionComp key={i} value={currency} />)}
-					</select>
+					<Select onChange={handleChange} value={curr} />
 				</div>
 
 				<div className="mb-3">

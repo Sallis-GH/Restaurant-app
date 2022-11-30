@@ -22,17 +22,37 @@
   width: 100vw;
 }
 
-.fork-img {
-  background-image: url('../images//fork.svg');
-  background-repeat: no-repeat;
-  background-position: 53% 22%;
-}
-
 .homepage--btn {
   color: black;
   border: black solid;
 }
 
+.button-container {
+  position: relative;
+  top: -535px;
+}
+
 .btn-menu {
-  margin-top: 10%;
+  background-color: rgba(255, 255, 255, 0.589);
+  padding: 3% 0;
+  width: 0%;
+}
+
+.fix-heigh {
+  height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  .button-container {
+    top: -70vh;
+  }
+
+  .btn-menu {
+    width: 25% !important;
+    min-width: 300px;
+  }
+}
+
+#root {
+  height: 100vh;
 }

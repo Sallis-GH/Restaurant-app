@@ -62,6 +62,7 @@ const saveItem = (req, res, imageID) => {
 };
 
 const saveItemWithImg = (req, img, res) => {
+  console.log(req.name, 'djksbsabk');
   saveImage(img.file)
     .then((imageID) => saveItem(req, res, imageID));
 };

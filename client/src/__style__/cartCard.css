@@ -1,6 +1,7 @@
 .del-item-cart {
   background-color: white;
-  color: black;
+  color: #263d4b;
+  ;
   border: none;
   width: 38px;
   font-size: 1.5rem;
@@ -9,8 +10,13 @@
 }
 
 .del-item-cart:hover {
-  background-color: black;
+  background-color: #263d4b;
   color: white;
+
+}
+
+.txt-orange {
+  color: #d77340;
 }
 
 @media screen and (min-width: 992px) {
