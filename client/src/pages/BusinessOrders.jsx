@@ -27,37 +27,6 @@ const BusinessOrders = () => {
     setTimeout(() => setRefresh(!refresh), 500);
   };
 
-  console.log(refresh);
-
-  // return (
-  //   <div className='container mt-4'>
-  //     <table className="table table-striped">
-  //       <thead>
-  //         <tr>
-  //           <th className="col-5">Order</th>
-  //           <th>Time</th>
-  //           <th>Client Name / Ref.</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-
-  //         {
-  //           userInfo?.map((order, index) => (
-  //             <tr key={index} >
-  //               <th>
-  //                 {
-  //                   orders[index].map((dish, index) => <span key={index} > {dish} <br /> </span>)
-  //                 }
-  //               </th>
-  //               <th>{order.date} <span> <br /> {order.time} </span></th>
-  //               <th>{order.email} <span> <br /> {order.phone} <br /> </span> {order.address} </th>
-  //             </tr>
-  //           ))
-  //         }
-  //       </tbody>
-  //     </table>
-  //   </div>
-  // );
 
   return (
     <div className="container">

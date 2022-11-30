@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import MenuCardsContainer from '../components/MenuCardsContainer';
 import OrderContext from '../context/OrderContext';
 import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 const Menu = ({isAddMenu}) => {
   const { order, setOrder } = useContext(OrderContext);
@@ -9,7 +10,7 @@ const Menu = ({isAddMenu}) => {
   const [menus, setMenus] = useState();
 
   const fetchAllProducts = () => {
-    fetch('http://localhost:8080/api/menu')
+    fetch(`${url}/api/menu`)
       .then(data => data.json())
       .then(data => setMenus(data))
     return
@@ -17,15 +18,10 @@ const Menu = ({isAddMenu}) => {
 
   useEffect(() => {
     fetchAllProducts()
-  }, []
-  )
-
-  // useEffect(() => {
   //   if(isDeleted) {
-  //     fetchAllProducts()
-  //     setIsDeleted(current => !current)
+  //    setIsDeleted(current => !current)
   //   }
-  // }, [isDeleted])
+ }, [isDeleted])
 
   const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')
   const sides = menus?.filter(item => item?.fields.category.toLowerCase() === 'sides')
@@ -61,11 +57,11 @@ const Menu = ({isAddMenu}) => {
         <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
       </div>
       <div className='position-sticky bottom-0 end-0'>
-        <button onClick={topFunction} title="Go to top" className='btn btn-outline-success position-absolute bottom-0 end-0 me-3
+        <button onClick={topFunction} title="Go to top" className='btn btn-count position-absolute bottom-0 end-0 me-3
         mb-3 bg-light pb-0'>^</button>
       </div>
     </main>
   )
 }
 
-export default Menu
+export default Menu;

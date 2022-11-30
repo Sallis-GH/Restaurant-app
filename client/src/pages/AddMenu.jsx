@@ -33,6 +33,7 @@ const AddMenu = () => {
 
 	const handleChange = (e) => {
 		setFormValues({ ...formValues, [e.target.id]: e.target.value });
+		console.log(formValues);
 	};
 
 	const handleImgChange = (e) => {
@@ -112,7 +113,7 @@ const AddMenu = () => {
 
 					<div className="mb-3">
 						<label className="form-label" htmlFor="category">Category</label>
-						<Select onChange={handleChange} value={categories} />
+						<Select handleChange={handleChange} value={categories} id={'category'} />
 					</div>
 
 					<div className="mb-3">
@@ -127,7 +128,7 @@ const AddMenu = () => {
 
 					<div className="mb-3">
 						<label className="form-label" htmlFor="currency">Currency</label>
-						<Select onChange={handleChange} value={curr} />
+						<Select handleChange={handleChange} value={curr} id={'currency'} />
 					</div>
 
 					<div className="mb-3">
