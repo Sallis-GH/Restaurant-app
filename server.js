@@ -7,7 +7,7 @@ import fileUpload from 'express-fileupload';
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || 'localhost';
+const HOST = 'localhost';
 
 const app = express();
 
