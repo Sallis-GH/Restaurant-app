@@ -72,7 +72,7 @@ const Checkout = () => {
 
 
         <div className="col-md-7 col-lg-8">
-          <h4 className="mb-3 text-blue">Billing address</h4>
+          <h4 className="mb-3 text-blue">Delivery address</h4>
           <form className="needs-validation" onSubmit={handleSubmit}>
             <div className="row g-3">
 
