@@ -4,6 +4,7 @@ import Select from '../components/Select'
 import IngredientInput from '../components/IngredientInput'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
+import Menu from './Menu';
 
 
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
@@ -92,82 +93,87 @@ const AddMenu = () => {
 			}
 		});
 	};
-
+	
 	return (
-		<div className="p-2 bg-secondary bg-opacity-10 ">
-			<form className="addMenu__form mx-auto my-5 p-3 border rounded bg-warning bg-opacity-25 shadow" onSubmit={handleSubmit} >
+		<div className='d-md-flex'>
+			<div className="p-2 bg-secondary bg-opacity-10 ">
+				<form className="addMenu__form mx-auto my-5 p-3 border rounded bg-warning bg-opacity-25 position-sticky shadow" onSubmit={handleSubmit} >
 
-				<h2>Add product</h2>
+					<h2>Add product</h2>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="name">Name</label>
-					<input
-						type="text" className="form-control"
-						id="name"
-						value={formValues.name || ""}
-						onChange={handleChange}
-					/>
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="name">Name</label>
+						<input
+							type="text" className="form-control"
+							id="name"
+							value={formValues.name || ""}
+							onChange={handleChange}
+						/>
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="category">Category</label>
-					<Select handleChange={handleChange} value={categories} id={'category'} />
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="category">Category</label>
+						<Select handleChange={handleChange} value={categories} id={'category'} />
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="price">Price</label>
-					<input
-						type="number" className="form-control"
-						id="price"
-						value={formValues.price || ""}
-						onChange={handleChange}
-					/>
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="price">Price</label>
+						<input
+							type="number" className="form-control"
+							id="price"
+							value={formValues.price || ""}
+							onChange={handleChange}
+						/>
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="currency">Currency</label>
-					<Select handleChange={handleChange} value={curr} id={'currency'} />
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="currency">Currency</label>
+						<Select handleChange={handleChange} value={curr} id={'currency'} />
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="description">Description</label>
-					<textarea className="form-control" id='description' onChange={handleChange}></textarea>
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="description">Description</label>
+						<textarea className="form-control" id='description' onChange={handleChange}></textarea>
+					</div>
 
-				<div className="mb-3">
-					<label className="form-label" htmlFor="img">Choose image:</label>
-					<input type="file" className="form-control" id='img' onChange={handleImgChange} accept="" />
-				</div>
+					<div className="mb-3">
+						<label className="form-label" htmlFor="img">Choose image:</label>
+						<input type="file" className="form-control" id='img' onChange={handleImgChange} accept="" />
+					</div>
 
-				<section className="mt-4 p-4  rounded">
-					<h3>Add ingredients</h3>
-					{ingredientsFormValues.map((obj, index) => (
-						<IngredientInput
-							key={index}
-							objValue={obj}
-							onChange={ingredientsHandleChange}
-							index={index}
-							deleteField={ingredientsHandleDeleteField}
-						/>))}
-					{!toggle ? (
-						<div className="d-flex justify-content-center mt-4">
-							<button className="btn btn-dark w-75" onClick={addBtnClick}>
-								Add new
-							</button>
-						</div>
-					) : (
-						<div className="d-flex justify-content-center">
-							<input type="text" className="form-control" placeholder="ingredient" ref={inputRef} />
-							<button className="btn btn-outline-secondary w-50" onClick={ingredientsHandleAddField}>
-								Add
-							</button>
-						</div>
-					)}
-				</section>
-				<button type="submit" className="submit-btn btn btn-danger w-100">
-					Submit
-				</button>
-			</form>
+					<section className="mt-4 p-4  rounded">
+						<h3>Add ingredients</h3>
+						{ingredientsFormValues.map((obj, index) => (
+							<IngredientInput
+								key={index}
+								objValue={obj}
+								onChange={ingredientsHandleChange}
+								index={index}
+								deleteField={ingredientsHandleDeleteField}
+							/>))}
+						{!toggle ? (
+							<div className="d-flex justify-content-center mt-4">
+								<button className="btn btn-dark w-75" onClick={addBtnClick}>
+									Add new
+								</button>
+							</div>
+						) : (
+							<div className="d-flex justify-content-center">
+								<input type="text" className="form-control" placeholder="ingredient" ref={inputRef} />
+								<button className="btn btn-outline-secondary w-50" onClick={ingredientsHandleAddField}>
+									Add
+								</button>
+							</div>
+						)}
+					</section>
+					<button type="submit" className="submit-btn btn btn-danger w-100">
+						Submit
+					</button>
+				</form>
+			</div>
+			<div className="p-2 bg-secondary bg-opacity-10">
+				<Menu isAddMenu={'true'}/>
+			</div>
 		</div>
 	);
 }

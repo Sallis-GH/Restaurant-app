@@ -1,18 +1,27 @@
 import { useState, useEffect, useContext } from 'react'
 import MenuCardsContainer from '../components/MenuCardsContainer';
 import OrderContext from '../context/OrderContext';
+import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
 const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
-console.log(process.env.REACT_APP_BASE_URL)
 
-const Menu = () => {
+const Menu = ({isAddMenu}) => {
   const { order, setOrder } = useContext(OrderContext);
+  const { isDeleted, setIsDeleted } = useContext(RefetchAfterDeleteContext);
   const [menus, setMenus] = useState();
 
-  useEffect(() => {
+  const fetchAllProducts = () => {
     fetch(`${url}/api/menu`)
       .then(data => data.json())
       .then(data => setMenus(data))
-  }, [])
+    return
+  };
+
+  useEffect(() => {
+    fetchAllProducts()
+  //   if(isDeleted) {
+  //    setIsDeleted(current => !current)
+  //   }
+ }, [isDeleted])
 
   const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')
   const sides = menus?.filter(item => item?.fields.category.toLowerCase() === 'sides')
@@ -41,11 +50,11 @@ const Menu = () => {
   return menus && (
     <main className='mb-3'>
       <div className='col-12 container'>
-        <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
+        <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
       </div>
       <div className='position-sticky bottom-0 end-0'>
         <button onClick={topFunction} title="Go to top" className='btn btn-count position-absolute bottom-0 end-0 me-3
