@@ -1,7 +1,5 @@
-import logo from '../images/logo.png'
-// import background from '../images/image.jpg'
-// import mobilebg from '../images/mobilebg.jpg'
-import { Link } from 'react-router-dom'
+import logo from '../images/logo.png';
+import { Link } from 'react-router-dom';
 import React from "react";
 import '../__style__/home.css';
 import { useAuth0 } from '@auth0/auth0-react';

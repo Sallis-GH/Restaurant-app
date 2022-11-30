@@ -79,6 +79,8 @@ const AddMenu = () => {
 		}
 		product.ingredients = ingredients
 
+		console.log(product, 'PLEASE SHOW ME THE ERROR');
+
 		let data = new FormData();
 		data.append('file', image);
 		data.append('body', JSON.stringify(product));
