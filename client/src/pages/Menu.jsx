@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import MenuCardsContainer from '../components/MenuCardsContainer';
 import OrderContext from '../context/OrderContext';
 
-const Menu = () => {
+const Menu = ({isAddMenu}) => {
   const { order, setOrder } = useContext(OrderContext);
   const [menus, setMenus] = useState();
 
@@ -39,11 +39,11 @@ const Menu = () => {
   return menus && (
     <main className='mb-3'>
       <div className='col-12 container'>
-        <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} />
-        <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} />
+        <MenuCardsContainer menus={starters} category={starters?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={sides} category={sides?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={pizzas} category={pizzas?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={desserts} category={desserts?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
+        <MenuCardsContainer menus={drinks} category={drinks?.[0].fields.category} getProductData={getProductData} isAddMenu={isAddMenu}/>
       </div>
       <div className='position-sticky bottom-0 end-0'>
         <button onClick={topFunction} title="Go to top" className='btn btn-outline-success position-absolute bottom-0 end-0 me-3

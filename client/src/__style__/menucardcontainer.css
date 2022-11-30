@@ -17,11 +17,21 @@
   text-align: center;
 }
 
+.addmenu-resize{
+  font-size: x-small;
+  max-width: 300px;
+}
+
 
 @media screen and (min-width: 768px) {
   .card-image {
     width: 10rem;
     height: 10rem;
+  }
+
+  .card-image-resize {
+    width: 8rem;
+    height: 6rem;
   }
 
   .card-inside-container {
@@ -33,3 +43,4 @@
     padding: 0;
   }
 }
+

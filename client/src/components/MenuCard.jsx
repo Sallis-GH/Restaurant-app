@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import '../__style__/menucardcontainer.css'
 
-const MenuCard = ({ name, description, image, price, currency, getProductData }) => {
+const MenuCard = ({ name, description, image, price, currency, getProductData, isAddMenu }) => {
 
   const quantityRef = useRef(0);
   const [quantity, setQuantity] = useState(0)
@@ -10,13 +10,21 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
     getProductData(obj);
   }
 
+  const onDelete = (e) => {
+    console.log(e);
+  }
+
   if (!image) {
     return (
       <div className="card ms-2 mb-2 card-container shadow-sm">
+        {!isAddMenu ? '' : 
+              <div className=' position-absolute end-0 bg-light'>
+                <button title="Delete" className='btn bg-white' onClick={onDelete}>❌</button>
+              </div>}
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
-          <div className='row'>
+          {isAddMenu ? '' : <div className='row'>
             <div className='col-6 col-lg-4'>
               <button onClick={() => handleGetProductData({ name, price: +price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
             </div>
@@ -27,25 +35,29 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
                 <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success ">+</button>
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     )
   }
-
+//  <main className={`${isAddMenu ? '' : 'mb-3'}`}>
   return (
 
-    <div className="card card-container mb-3 col-12 col-lg-8 ms-2 d-flex justify-content-center shadow-sm">
+    <div className={`card  d-flex justify-content-center shadow-sm ${isAddMenu ? 'mb-3 col-12 col-lg-6 addmenu-resize' : 'mb-3 ms-2 card-container col-12 col-lg-8 '}`}>
       <div className="row d-flex">
         <div className="col-md-5 d-flex justify-content-center align-items-center">
-          <img src={image} className="card-image w-75 rounded-5 shadow mt-3" alt={name} />
+          <img src={image} className={` rounded-5 shadow my-3  ${isAddMenu ? 'card-image-resize w-100' : 'card-image w-75'}`} alt={name} />
         </div>
-        <div className="col-md-7">
+        <div className="col-md-7 position-relative">
+            {!isAddMenu ? '' : 
+              <div className=' position-absolute end-0 bg-light'>
+                <button title="Delete" className='btn bg-white' onClick={onDelete}>❌</button>
+              </div>}
           <div className="card-body">
-            <h5 className="card-title">{name}</h5>
-            <p className="card-text">{description}</p>
-            <p className="card-text"><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
-            <div className='column'>
+            <h5 className={`card-title ${isAddMenu ? 'h6' : ''}`}>{name}</h5>
+            <p className={`card-title ${isAddMenu ? 'small' : ''}`}>{description}</p>
+            <p className={`card-title ${isAddMenu ? 'small' : ''}`}><small className="text-muted">Price: {price.toFixed(2)} {currency}</small></p>
+            {isAddMenu ? '' : <div className='column'>
               <div className='col-6 col-md-12 align-content-center'>
                 <button onClick={() => handleGetProductData({ name, price: +price, currency, quantity: +quantityRef.current.textContent })} type="button" className="btn btn-outline-secondary add-to-cart--btn">Add to cart</button>
               </div>
@@ -56,7 +68,8 @@ const MenuCard = ({ name, description, image, price, currency, getProductData })
                   <button onClick={() => quantity < 10 ? setQuantity(quantity + 1) : null} type="button" className="btn btn-outline-success border border-3 border-start-0 border-success w-25 justify-content-center ">+</button>
                 </div>
               </div>
-            </div>
+            </div>}
+
           </div>
         </div>
       </div>
