@@ -19,7 +19,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
     axios.delete(`http://localhost:8080/api/menu/${id}`)
     .then(function (response) {
       console.log(response, 'response');
-      setTimeout(() => setIsDeleted(current => !current), 500);
+      setIsDeleted(current => !current);
     })
       .catch(error => console.log(error))
   };
