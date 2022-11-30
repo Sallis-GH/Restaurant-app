@@ -7,24 +7,61 @@ import mobile_pasta from '../images/mobile_pasta.jpg';
 import mobile_dessert from '../images/mobile_dessert.jpg';
 import mobile_donuts from '../images/mobile_donuts.jpg';
 import '../__style__/carousel.css';
+import { useEffect, useState } from 'react';
 
-const Carousel = () => (
-  <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-    <div className="carousel-inner carousel-high">
-      <div className="carousel-item active">
-        <img src={mobile_pizza} srcSet={`${mobile_pizza} 300w, ${mobile_pizza} 769w, ${pizza} 1280w`} className="d-block w-100" alt="image1" />
+const Carousel = () => {
+
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1200);
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1200);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  }, [isDesktop]);
+
+  console.log(isDesktop, 'isDesktop');
+
+  return isDesktop ?
+    (
+      <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner carousel-high">
+          <div className="carousel-item active">
+            <img src={pizza} className="d-block w-100" alt="image1" />
+          </div>
+          <div className="carousel-item">
+            <img src={pasta} className="d-block w-100" alt="image2" />
+          </div>
+          <div className="carousel-item">
+            <img src={choco_sweet} className="d-block w-100" alt="image3" />
+          </div>
+          <div className="carousel-item">
+            <img src={lemon_meringue} className="d-block w-100" alt="image4" />
+          </div>
+        </div>
       </div>
-      <div className="carousel-item">
-        <img src={mobile_pasta} srcSet={`${mobile_pasta} 300w, ${mobile_pasta} 769w, ${pasta} 1280w`} className="d-block w-100" alt="image2" />
+    )
+    :
+    (
+      <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner carousel-high">
+          <div className="carousel-item active">
+            <img src={mobile_pizza} className="d-block w-100" alt="image1" />
+          </div>
+          <div className="carousel-item">
+            <img src={mobile_pasta} className="d-block w-100" alt="image2" />
+          </div>
+          <div className="carousel-item">
+            <img src={mobile_dessert} className="d-block w-100" alt="image3" />
+          </div>
+          <div className="carousel-item">
+            <img src={mobile_donuts} className="d-block w-100" alt="image4" />
+          </div>
+        </div>
       </div>
-      <div className="carousel-item">
-        <img src={mobile_dessert} srcSet={`${mobile_dessert} 300w, ${mobile_dessert} 769w, ${choco_sweet} 1280w`} className="d-block w-100" alt="image3" />
-      </div>
-      <div className="carousel-item">
-        <img src={mobile_donuts} srcSet={`${mobile_donuts} 300w, ${mobile_donuts} 76w, ${lemon_meringue} 1280w`} className="d-block w-100" alt="image4" />
-      </div>
-    </div>
-  </div>
-);
+    );
+}
+
 
 export default Carousel;
