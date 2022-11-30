@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import '../__style__/businessOrder.css';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 
 const BusinessOrders = () => {
@@ -11,7 +12,7 @@ const BusinessOrders = () => {
 
   useEffect(() => {
     console.log('use effect called');
-    axios.get('http://localhost:8080/api/orders')
+    axios.get(`${url}/api/orders`)
       .then(async response => {
         setUserInfo(response.data);
         setOrders(
@@ -22,7 +23,7 @@ const BusinessOrders = () => {
   }, [refresh]);
 
   const completeOrder = event => {
-    axios.delete(`http://localhost:8080/api/orders/${userInfo[event.target.id].id}`)
+    axios.delete(`${url}/api/orders/${userInfo[event.target.id].id}`)
       .catch(error => console.log(error))
     setTimeout(() => setRefresh(!refresh), 500);
   };

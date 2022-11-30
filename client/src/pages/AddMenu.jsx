@@ -5,6 +5,7 @@ import IngredientInput from '../components/IngredientInput'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
 import Menu from './Menu';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 
 const categories = ['starters', 'sides', 'pizza', 'drinks', 'dessert']
@@ -85,7 +86,7 @@ const AddMenu = () => {
 		data.append('file', image);
 		data.append('body', JSON.stringify(product));
 
-		axios.post('http://localhost:8080/api/menu/newDish', data, {
+		axios.post(`${url}/api/menu/newDish`, data, {
 			headers: {
 				'accept': 'application/json',
 				'Accept-Language': 'en-US,en;q=0.8',
@@ -97,7 +98,7 @@ const AddMenu = () => {
 	return (
 		<div className='d-md-flex'>
 			<div className="p-2 bg-secondary bg-opacity-10 ">
-				<form className="addMenu__form mx-auto my-5 p-3 border rounded bg-warning bg-opacity-25 position-sticky shadow" onSubmit={handleSubmit} >
+				<form className="addMenu__form mx-auto my-5 p-3 border rounded bg-warning bg-opacity-25 shadow" onSubmit={handleSubmit} >
 
 					<h2>Add product</h2>
 

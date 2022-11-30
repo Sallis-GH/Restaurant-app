@@ -18,9 +18,9 @@ const Menu = ({isAddMenu}) => {
 
   useEffect(() => {
     fetchAllProducts()
-  //   if(isDeleted) {
-  //    setIsDeleted(current => !current)
-  //   }
+    if(isDeleted) {
+     setIsDeleted(current => !current)
+    }
  }, [isDeleted])
 
   const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')

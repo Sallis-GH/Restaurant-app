@@ -4,6 +4,7 @@ import OrderContext from '../context/OrderContext';
 import '../__style__/checkout.css';
 import CheckoutDisplayCard from '../components/CheckoutDisplayCard';
 import axios from 'axios';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Checkout = () => {
       orders: [...order]
     }
     if (approvePayment.length === 4) {
-      axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
+      axios.post(`${url}/api/orders/neworder`, submitFinalOrder)
         .then(function (response) {
           console.log(response, 'response');
           navigate('/thankyou');

@@ -2,6 +2,7 @@ import { useState, useRef, useContext } from 'react'
 import '../__style__/menucardcontainer.css'
 import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
 import axios from 'axios';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 
 const MenuCard = ({ name, description, image, price, currency, getProductData, id ,isAddMenu }) => {
@@ -16,7 +17,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
   }
 
   const deleteMenuProduct = () => {
-    axios.delete(`http://localhost:8080/api/menu/${id}`)
+    axios.delete(`${url}/api/menu/${id}`)
     .then(function (response) {
       console.log(response, 'response');
       setIsDeleted(current => !current);
@@ -26,7 +27,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
 
   const onDelete = (e) => {
     console.log(e);
-    // deleteMenuProduct()
+    deleteMenuProduct()
   }
 
   if (!image) {
