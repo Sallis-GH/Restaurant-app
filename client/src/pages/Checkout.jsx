@@ -4,6 +4,7 @@ import OrderContext from '../context/OrderContext';
 import '../__style__/checkout.css';
 import CheckoutDisplayCard from '../components/CheckoutDisplayCard';
 import axios from 'axios';
+const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Checkout = () => {
       orders: [...order]
     }
     if (approvePayment.length === 4) {
-      axios.post('http://localhost:8080/api/orders/neworder', submitFinalOrder)
+      axios.post(`${url}/api/orders/neworder`, submitFinalOrder)
         .then(function (response) {
           console.log(response, 'response');
           navigate('/thankyou');
@@ -64,14 +65,14 @@ const Checkout = () => {
             {order.map((p, i) => <CheckoutDisplayCard key={i} name={p.name} price={p.price} currency={p.currency} quantity={p.quantity} />)}
             <li className="list-group-item d-flex justify-content-between">
               <span>Total {order[0]?.currency}</span>
-              <strong>{order.reduce((res, p) => { return res + (p.price + p.quantity) }, 0)} {order[0]?.currency}</strong>
+              <strong>{order.reduce((res, p) => { return res + (p.price * p.quantity) }, 0)} {order[0]?.currency}</strong>
             </li>
           </ul>
         </div>
 
 
         <div className="col-md-7 col-lg-8">
-          <h4 className="mb-3 text-blue">Billing address</h4>
+          <h4 className="mb-3 text-blue">Delivery address</h4>
           <form className="needs-validation" onSubmit={handleSubmit}>
             <div className="row g-3">
 
