@@ -11,10 +11,12 @@ import ThankYou from './pages/Thankyou';
 import { OrderProvider } from './context/OrderContext';
 import BusinessOrders from './pages/BusinessOrders';
 import BusinessLogin from './pages/BusinessLogin';
+import { RefetchAfterDeleteProvider } from './context/RefetchAfterDeleteContext';
 
 function App() {
 
   return (
+    <RefetchAfterDeleteProvider>
     <OrderProvider>
       <Routes>
         <Route index element={<Home />} />
@@ -32,6 +34,7 @@ function App() {
         <Route path='*' element={<NoPage />} />d
       </Routes>
     </OrderProvider>
+    </RefetchAfterDeleteProvider>
   );
 }
 

@@ -1,16 +1,31 @@
 import { useState, useEffect, useContext } from 'react'
 import MenuCardsContainer from '../components/MenuCardsContainer';
 import OrderContext from '../context/OrderContext';
+import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
 
 const Menu = ({isAddMenu}) => {
   const { order, setOrder } = useContext(OrderContext);
+  const { isDeleted, setIsDeleted } = useContext(RefetchAfterDeleteContext);
   const [menus, setMenus] = useState();
 
-  useEffect(() => {
+  const fetchAllProducts = () => {
     fetch('http://localhost:8080/api/menu')
       .then(data => data.json())
       .then(data => setMenus(data))
-  }, [])
+    return
+  };
+
+  useEffect(() => {
+    fetchAllProducts()
+  }, []
+  )
+
+  // useEffect(() => {
+  //   if(isDeleted) {
+  //     fetchAllProducts()
+  //     setIsDeleted(current => !current)
+  //   }
+  // }, [isDeleted])
 
   const starters = menus?.filter(item => item?.fields.category.toLowerCase() === 'starter')
   const sides = menus?.filter(item => item?.fields.category.toLowerCase() === 'sides')

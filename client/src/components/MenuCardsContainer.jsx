@@ -9,6 +9,7 @@ const MenuCardContainer = ({ menus, category, getProductData, isAddMenu }) => {
         <div className={`${isAddMenu ? '' : 'mt-4'}`}></div>
         {menus?.map((item, index) => (
           <MenuCard key={index}
+          id={item.sys.id}
             name={item.fields.name}
             description={item.fields.description}
             image={item.fields.image?.fields.file.url}

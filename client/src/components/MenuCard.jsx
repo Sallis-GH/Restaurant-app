@@ -1,17 +1,32 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 import '../__style__/menucardcontainer.css'
+import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
+import axios from 'axios';
 
-const MenuCard = ({ name, description, image, price, currency, getProductData, isAddMenu }) => {
+
+const MenuCard = ({ name, description, image, price, currency, getProductData, id ,isAddMenu }) => {
+  // console.log(id);
 
   const quantityRef = useRef(0);
   const [quantity, setQuantity] = useState(0)
+  const { setIsDeleted } = useContext(RefetchAfterDeleteContext);
 
   const handleGetProductData = (obj) => {
     getProductData(obj);
   }
 
+  const deleteMenuProduct = () => {
+    axios.delete(`http://localhost:8080/api/menu/${id}`)
+    .then(function (response) {
+      console.log(response, 'response');
+      setTimeout(() => setIsDeleted(current => !current), 500);
+    })
+      .catch(error => console.log(error))
+  };
+
   const onDelete = (e) => {
     console.log(e);
+    // deleteMenuProduct()
   }
 
   if (!image) {
@@ -40,7 +55,7 @@ const MenuCard = ({ name, description, image, price, currency, getProductData, i
       </div>
     )
   }
-//  <main className={`${isAddMenu ? '' : 'mb-3'}`}>
+
   return (
 
     <div className={`card  d-flex justify-content-center shadow-sm ${isAddMenu ? 'mb-3 col-12 col-lg-6 addmenu-resize' : 'mb-3 ms-2 card-container col-12 col-lg-8 '}`}>
