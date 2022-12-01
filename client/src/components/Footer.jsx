@@ -14,8 +14,8 @@ const Footer = () => {
             </div>
             <div className="address col-6 text-end">
               <p>ADMS kitchen</p> <br></br>
-              <p>Lustgårdsgatan 19 112 51,</p>
-              <p>Stockholm</p>
+              <p>Lustgårdsgatan 19</p>
+              <p>112 51 Stockholm</p>
             </div>
           </div>
         </div>
