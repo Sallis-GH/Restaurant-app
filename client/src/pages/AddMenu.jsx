@@ -1,10 +1,11 @@
 import '../__style__/AddMenu.css'
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 import Select from '../components/Select'
 import IngredientInput from '../components/IngredientInput'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import axios from 'axios';
 import Menu from './Menu';
+import RefetchAfterDeleteContext from '../context/RefetchAfterDeleteContext';
 const url = process.env.REACT_APP_BASE_URL || 'http://localhost:8080'
 
 
@@ -24,14 +25,14 @@ const curr = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZ
 
 
 const AddMenu = () => {
-
-
 	const [formValues, setFormValues] = useState({});
+
+	const { setIsDeleted } = useContext(RefetchAfterDeleteContext);
 	const [ingredientsFormValues, setIngredientsFormValues] = useState([]);
 	const [toggle, setToggle] = useState(false);
 	const [image, setImage] = useState(null);
 	const inputRef = useRef();
-console.log(formValues);
+	console.log(formValues);
 	const handleChange = (e) => {
 		setFormValues({ ...formValues, [e.target.id]: e.target.value });
 		console.log(formValues);
@@ -92,13 +93,18 @@ console.log(formValues);
 				'Accept-Language': 'en-US,en;q=0.8',
 				'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
 			}
-		});
+		})
+			.then(function (response) {
+				console.log(response, 'response');
+				setIsDeleted(current => !current);
+			})
+			.catch(error => console.log(error));
 		setFormValues({});
 		setIngredientsFormValues([]);
 		setImage(null);
 		console.log("I have submited");
 	};
-	
+
 	return (
 		<div className='d-md-flex'>
 			<div className="p-2 bg-secondary bg-opacity-10 ">
@@ -177,7 +183,7 @@ console.log(formValues);
 				</form>
 			</div>
 			<div className="p-2 bg-secondary bg-opacity-10">
-				<Menu isAddMenu={'true'}/>
+				<Menu isAddMenu={'true'} />
 			</div>
 		</div>
 	);
