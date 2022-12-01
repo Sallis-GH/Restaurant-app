@@ -129,10 +129,6 @@ const Checkout = () => {
                 <input id="debit" name="paymentMethod" type="radio" className="form-check-input" required="" />
                 <label className="form-check-label" htmlFor="debit text-blue">Debit card</label>
               </div>
-              <div className="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" className="form-check-input" required="" />
-                <label className="form-check-label" htmlFor="paypal text-blue">PayPal</label>
-              </div>
             </div>
 
             <div className="row gy-3">

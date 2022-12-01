@@ -1,20 +1,34 @@
-.gif-container{
-    width: 35vw; 
- 
+.background-card-color {
+    background-color: #fef9ec;
 }
-.gif{
+
+.gif-container {
     width: 35vw;
-    
+
+}
+
+.gif {
+    width: 35vw;
+
 }
 
 
-@media screen and (min-width: 992px){
-.gif-container{
-    width: 20vw; 
- 
+@media screen and (min-width: 992px) {
+    .gif-container {
+        width: 20vw;
+
+    }
+
+    .gif {
+        width: 20vw;
+
+    }
 }
-.gif{
-    width: 20vw;
-    
+
+.primary-text-color {
+    color: #d77340;
 }
+
+.secondary-text-color {
+    color: #263d4b;
 }

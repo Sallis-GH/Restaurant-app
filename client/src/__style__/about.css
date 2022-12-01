@@ -1,9 +1,17 @@
-
-.about-img{
+.about-img {
     height: 60vh;
     width: 100vw;
 }
-.about-img-mobile{
+
+.about-img-mobile {
     height: 50vh;
     width: 102vw;
+}
+
+.primary-text-color {
+    color: #d77340;
+}
+
+.secondary-text-color {
+    color: #263d4b;
 }

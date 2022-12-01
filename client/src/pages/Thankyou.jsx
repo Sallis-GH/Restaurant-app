@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import gif from '../images/bikegif.gif'
+import gif from '../images/bike_transparent.gif'
 import '../__style__/thankyou.css';
 
 const ThankYou = () => {
@@ -9,8 +9,8 @@ const ThankYou = () => {
             <div className="d-flex justify-content-center align-items-center">
                 <img className="gif" src={gif} alt="my-gif" />
             </div>
-            <div className="vh-50 d-flex justify-content-center mb-4">
-                <div className="card col-md-8 col-lg-4 bg-white shadow-md p-5">
+            <div className="vh-50 d-flex background-card-color justify-content-center mb-4">
+                <div className="card col-md-8 col-lg-4 shadow-md p-5">
                     <div className="mb-4 text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="text-success bi bi-check-circle" width="75" height="75"
                             fill="currentColor" viewBox="0 0 16 16">
@@ -20,8 +20,8 @@ const ThankYou = () => {
                         </svg>
                     </div>
                     <div className="text-center">
-                        <h1>Thank You!</h1>
-                        <p>Your order is on its way </p>
+                        <h1 className='primary-text-color'>Thank You!</h1>
+                        <p className='secondary-text-color'>Your order is on its way </p>
                         <Link to='/'>
                             <button className="btn btn-outline-success">Back Home</button>
                         </Link>
